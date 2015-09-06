@@ -120,6 +120,100 @@ from os.path import isfile, split, join
 from copy import deepcopy
 
 
+_spanish = {'TurtleScreen':          'PantallaTortuga',
+            'RawTurtle':             'TortugaBruta',
+            'RawPen':                'LapizBruto',
+            'Turtle':                'Tortuga',
+            'Pen':                   'Lapiz',
+            'forward':               'adelante',
+            'back':                  'atras',
+            'right':                 'derecho',
+            'left':                  'izquierda',
+            'goto':                  'ir_a',
+            'setx':                  'fijar_x',
+            'sety':                  'fijar_y',
+            'setheading':            'fijar_direccion',
+            'home':                  'origen',
+            'circle':                'circulo',
+            'dot':                   'punto',
+            'stamp':                 'sello',
+            'clearstamp':            'borrar_sello',
+            'clearstamps':           'borrar_sellos',
+            'undo':                  'deshacer',
+            'speed':                 'velocidad',
+            'position':              'posicion',
+            'towards':               'hacia',
+            'xcor':                  'posicion_x',
+            'ycor':                  'posicion_y',
+            'heading':               'direccion',
+            'distance':              'distancia',
+            'degrees':               'grados',
+            'radians':               'radianes',
+            'pendown':               'bajar_lapiz',
+            'penup':                 'subir_lapiz',
+            'pensize':               'tamano_lapiz',
+            'pen':                   'lapiz',
+            'isdown':                'esta_presionada',
+            'color':                 'color',
+            'pencolor':              'color_de_lapiz',
+            'fillcolor':             'color_de_relleno',
+            'reset':                 'reiniciar',
+            'clear':                 'borrar',
+            'write':                 'escribir',
+            'showturtle':            'mostrar',
+            'hideturtle':            'esconder',
+            'shape':                 'figura',
+            'resizemode':            'modo_cambio_tamano',
+            'shapesize':             'tamano_de_figura',
+            'shearfactor':           'factor_de_inclinacion',
+            'settiltangle':          'fijar_angulo_rotacion',
+            'tiltangle':             'angulo_de_rotacion',
+            'tilt':                  'rotar',
+            'shapetransform':        'transformar_figura',
+            'get_shapepoly':         'obtener_poligono',
+            'onclick':               'al_hacer_clic',
+            'onrelease':             'al_liberar',
+            'ondrag':                'al_arrastrar',
+            'begin_poly':            'comienzar_poligono',
+            'end_poly':              'terminar_poligono',
+            'get_poly':              'obtener_poligono',
+            'clone':                 'clonar',
+            'getturtle':             'obtener_tortuga',
+            'getpen':                'obtener_lapiz',
+            'getscreen':             'obtener_pantalla',
+            'setundobuffer':         'establecer_bufer_deshacer',
+            'undobufferentries':     'tamano_bufer_deshacer',
+            'bgcolor':               'color_fondo',
+            'bgpic':                 'imagen_fondo',
+            'clear':                 'borrar',
+            'reset':                 'reiniciar',
+            'screensize':            'tamano_de_pantalla',
+            'setworldcoordinates':   'fijar_coordenadas_mundo',
+            'delay':                 'retraso',
+            'tracer':                'animacion',
+            'update':                'redibujar',
+            'listen':                'escuchar',
+            'onkey':                 'al_soltar_la_tecla',
+            'onkeypress':            'al_pulsar_la_tecla',
+            'ontimer':               'temporizador',
+            'mainloop':              'bucle_principal',
+            'done':                  'hecho',
+            'mode':                  'modo',
+            'colormode':             'modo_de_color',
+            'getcanvas':             'obtener_el_lienzo',
+            'getshapes':             'conseguir_figuras',
+            'register_shape':        'registrar_figura',
+            'turtles':               'tortugas',
+            'window_height':         'altura_de_ventana',
+            'window_width':          'ancho_de_ventana',
+            'textinput':             'entrada_texto',
+            'numinput':              'entrada_numero',
+            'bye':                   'adios',
+            'exitonclick':           'salida_en_clic',
+            'setup':                 'configurar',
+            'title':                 'titulo',
+            }
+
 _tg_classes = ['ScrolledCanvas', 'TurtleScreen', 'Screen',
                'RawTurtle', 'Turtle', 'RawPen', 'Pen', 'Shape', 'Vec2D']
 _tg_screen_functions = ['addshape', 'bgcolor', 'bgpic', 'bye',
@@ -2030,6 +2124,11 @@ class TNavigator(object):
         if self.undobuffer:
             self.undobuffer.cumulate = False
 
+    # Add Spanish names for all Turtle methods
+    for englishName in _tg_turtle_functions:
+        if englishName in _spanish and englishName in locals():
+            locals()[_spanish[englishName]] = locals()[englishName]
+
 ## three dummy methods to be implemented by child class:
 
     def speed(self, s=0):
@@ -2048,6 +2147,7 @@ class TNavigator(object):
     setpos = goto
     setposition = goto
     seth = setheading
+
 
 
 class TPen(object):
@@ -3682,6 +3782,12 @@ class RawTurtle(TPen, TNavigator):
 
     turtlesize = shapesize
 
+    # Add Spanish names for all Turtle methods
+    for englishName in _tg_turtle_functions:
+        if englishName in _spanish and englishName in locals():
+            locals()[_spanish[englishName]] = locals()[englishName]
+
+
 RawPen = RawTurtle
 
 ###  Screen - Singleton  ########################
@@ -3827,6 +3933,10 @@ class _Screen(TurtleScreen):
         except AttributeError:
             exit(0)
 
+    # Add Spanish names for all Screen methods
+    for englishName in _tg_screen_functions:
+        if englishName in _spanish and englishName in locals():
+            locals()[_spanish[englishName]] = locals()[englishName]
 
 class Turtle(RawTurtle):
     """RawTurtle auto-creating (scrolled) canvas.
@@ -4173,3 +4283,14 @@ if __name__ == "__main__":
 
 
 
+
+# Add Spanish names for the global functions.
+for englishTerm, nonEnglishTerm in _spanish.items():
+    locals()[nonEnglishTerm] = locals()[englishTerm]
+
+# Add Spanish class names
+PantallaTortuga = TurtleScreen
+TortugaBruta = RawTurtle
+LapizBruto = RawPen
+Tortuga = Turtle
+Lapiz = Pen
