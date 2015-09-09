@@ -667,6 +667,7 @@ class TurtleScreenBase(object):
     def _iscolorstring(self, color):
         """Check if the string color is a legal Tkinter color string.
         """
+        color = _convertNonEnglish(color)
         try:
             rgb = self.cv.winfo_rgb(color)
             ok = True
@@ -677,6 +678,7 @@ class TurtleScreenBase(object):
     def _bgcolor(self, color=None):
         """Set canvas' backgroundcolor if color is not None,
         else return backgroundcolor."""
+        color = _convertNonEnglish(color)
         if color is not None:
             self.cv.config(bg = color)
             self._update()
@@ -688,6 +690,8 @@ class TurtleScreenBase(object):
         and color.
         Return text item and x-coord of right bottom corner
         of text's bounding box."""
+        pencolor = _convertNonEnglish(pencolor)
+        align = _convertNonEnglish(align)
         x, y = pos
         x = x * self.xscale
         y = y * self.yscale
@@ -1033,6 +1037,8 @@ class Shape(object):
         >>> s.addcomponent(poly, "red", "blue")
         >>> # .. add more components and then use register_shape()
         """
+        fill = _convertNonEnglish(fill)
+        outline = _convertNonEnglish(outline)
         if self._type != "compound":
             raise TurtleGraphicsError("Cannot add component to %s Shape"
                                                                 % self._type)
@@ -1253,6 +1259,8 @@ class TurtleScreen(TurtleScreenBase):
         >>> screen.register_shape("triangle", ((5,-3),(0,5),(-5,-3)))
 
         """
+
+        name = _convertNonEnglish(name)
         if shape is None:
             # image
             if name.lower().endswith(".gif"):
@@ -1275,6 +1283,8 @@ class TurtleScreen(TurtleScreenBase):
         If the argument doesn't represent a color,
         an error is raised.
         """
+        color = _convertNonEnglish(color)
+
         if len(color) == 1:
             color = color[0]
         if isinstance(color, str):
@@ -1293,6 +1303,7 @@ class TurtleScreen(TurtleScreenBase):
         return "#%02x%02x%02x" % (r, g, b)
 
     def _color(self, cstr):
+        cstr = _convertNonEnglish(cstr)
         if not cstr.startswith("#"):
             return cstr
         if len(cstr) == 7:
@@ -1625,6 +1636,7 @@ class TurtleScreen(TurtleScreenBase):
         >>> turtle.screensize(2000,1500)
         >>> # e.g. to search for an erroneously escaped turtle ;-)
         """
+        bg = _convertNonEnglish(bg)
         return self._resize(canvwidth, canvheight, bg)
 
     onscreenclick = onclick
@@ -1666,6 +1678,7 @@ class TNavigator(object):
     def _setmode(self, mode=None):
         """Set turtle-mode to 'standard', 'world' or 'logo'.
         """
+        mode = _convertNonEnglish(mode)
         if mode is None:
             return self._mode
         if mode not in ["standard", "logo", "world"]:
@@ -2589,6 +2602,11 @@ class TPen(object):
             self._shapetrafo = ( scx*ca, scy*(shf*ca + sa),
                                 -scx*sa, scy*(ca - shf*sa))
         self._update()
+
+    # Add Spanish names for all Turtle methods
+    for englishName in _tg_turtle_functions:
+        if englishName in _spanish and englishName in locals():
+            locals()[_spanish[englishName]] = locals()[englishName]
 
 ## three dummy methods to be implemented by child class:
 
@@ -3787,7 +3805,6 @@ class RawTurtle(TPen, TNavigator):
         if englishName in _spanish and englishName in locals():
             locals()[_spanish[englishName]] = locals()[englishName]
 
-
 RawPen = RawTurtle
 
 ###  Screen - Singleton  ########################
@@ -4294,3 +4311,31 @@ TortugaBruta = RawTurtle
 LapizBruto = RawPen
 Tortuga = Turtle
 Lapiz = Pen
+
+def _convertNonEnglish(nonEnglish=''):
+    convertWords = {'negro': 'black',
+                    'azul': 'blue',
+                    'marron': 'brown',
+                    'naranja': 'orange',
+                    'gris': 'gray',
+                    'verde': 'green',
+                    'morado': 'purple',
+                    'rosa': 'pink',
+                    'amarillo': 'yellow',
+                    'blanco': 'white',
+                    'rojo': 'red',
+                    'auto': 'auto',
+                    'usuario': 'user',
+                    'sin_cambio_de_tamano': 'noresize',
+                    'derecho': 'right',
+                    'izquierda': 'left',
+                    'centro': 'center',
+                    'arrow': 'flecha',
+                    'turtle': 'tortuga',
+                    'circle': 'circulo',
+                    'square': 'cuadrado',
+                    'triangle': 'triangulo',
+                    'classic': 'clasico',
+                    'blank': 'nada',
+                   }
+    return convertWords.get(nonEnglish, nonEnglish)
