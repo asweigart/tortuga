@@ -1,6 +1,10 @@
 # add canvasvg to requirements for running these tests
 
-import canvasvg
+try:
+    import canvasvg
+except ImportError:
+    import sys
+    sys.exit('These tests require the canvasvg module. Run "pip install canvasvg".')
 import tempfile
 
 
