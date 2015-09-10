@@ -22,4 +22,4 @@ Only the names have been added. The functionality has not changed. This code:
     t.pencolor('red')
     t.back(50)
 
-The main wiki page for the Turtle Translation project is at https://github.com/asweigart/idle-reimagined/wiki
+The main wiki page for the Turtle Translation project is at https://github.com/asweigart/idle-reimagined/wiki/Turtle-Translations
