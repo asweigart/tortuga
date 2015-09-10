@@ -1,7 +1,5 @@
-# add canvasvg to requirements for running these tests
-
 try:
-    import canvasvg
+    from canvasvg.canvasvg import saveall
 except ImportError:
     import sys
     sys.exit('These tests require the canvasvg module. Run "pip install canvasvg".')
@@ -10,8 +8,8 @@ import tempfile
 
 def convert_to_svg_string(canvas):
     canvas.update()
-    with tempfile.TemporaryFile() as temp_output:
-        canvasvg.saveall(temp_output.name, canvas)
+    with tempfile.NamedTemporaryFile() as temp_output:
+        saveall(temp_output.name, canvas)
         return open(temp_output.name, "rb").read()
 
 

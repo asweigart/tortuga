@@ -15,13 +15,16 @@ english_colors = 'blue brown orange gray green purple pink yellow white black re
 
 class TestBasicModuleFunctionality(TestCase):
     def setUp(self):
+        self.clear()
+
+    def clear(self):
         turtle.clear()
         tortuga.clear()
 
-    def assert_module_same(self):
+    def assert_same(self):
         testUtil.assert_canvas_equal(turtle.getscreen().getcanvas(), tortuga.getscreen().getcanvas())
 
-    def assert_module_different(self):
+    def assert_different(self):
         testUtil.assert_canvas_not_equal(turtle.getscreen().getcanvas(), tortuga.getscreen().getcanvas())
 
     def test_simple_functions(self):
@@ -30,7 +33,7 @@ class TestBasicModuleFunctionality(TestCase):
 
         tortuga.forward(50)
         tortuga.left(90)
-        self.assert_module_same()
+        self.assert_same()
 
     def test_pencolor(self):
         for c in (spanish_colors):
@@ -41,7 +44,7 @@ class TestBasicModuleFunctionality(TestCase):
             turtle.pencolor(c)
             turtle.forward(3)
 
-        self.assert_module_same()
+        self.assert_same()
 
     def test_fillcolor(self):
         for c in (spanish_colors):
@@ -52,7 +55,7 @@ class TestBasicModuleFunctionality(TestCase):
             turtle.fillcolor(c)
             turtle.forward(3)
 
-        self.assert_module_same()
+        self.assert_same()
 
     def test_color(self):
         for c in (spanish_colors):
@@ -63,7 +66,7 @@ class TestBasicModuleFunctionality(TestCase):
             turtle.color(c)
             turtle.forward(3)
 
-        self.assert_module_same()
+        self.assert_same()
 
     def test_bgcolor(self):
         for c in (spanish_colors):
@@ -74,7 +77,7 @@ class TestBasicModuleFunctionality(TestCase):
             turtle.bgcolor(c)
             turtle.forward(3)
 
-        self.assert_module_same()
+        self.assert_same()
 
     def test_same_function_names_work(self):
         # draw some things using the english commands in tortuga
@@ -102,7 +105,7 @@ class TestBasicModuleFunctionality(TestCase):
             turtle.forward(10)
 
         # and make sure they both resulted in the same output
-        self.assert_module_same()
+        self.assert_same()
 
     def test_equivalent_spanish_names_work(self):
         # draw some things using the english commands in tortuga
@@ -136,7 +139,89 @@ class TestBasicModuleFunctionality(TestCase):
             turtle.forward(10)
 
         # and make sure they both resulted in the same output
-        self.assert_module_same()
+        self.assert_same()
+
+    def test_pen(self):
+        some_english_colors = ['blue', (0.5, 0.3, 0.2), 'brown', 'orange']
+        some_spanish_colors = ['azul', (0.5, 0.3, 0.2), 'marron', 'naranja']
+        pen_options = [('shown', 'se_muestra', [True, False]),
+                       ('pendown', 'bajar_lapiz', [True, False]),
+                       ('pencolor', 'color_de_lapiz', some_english_colors, some_spanish_colors),
+                       ('fillcolor', 'color_de_relleno', some_english_colors, some_spanish_colors),
+                       ('pensize', 'tamano_lapiz', [1, 2, 3, 4, 5]),
+                       ('speed', 'velocidad', range(1, 11)),
+                       ('resizemode', 'modo_cambio_tamano', ['auto', 'user', 'noresize'], ['auto', 'usuario', 'sin_cambio_de_tamano']),
+                       ('stretchfactor', 'TODO: stretchfactor', [(1, 1), (1, 2), (2, 1), (2, 2)]),
+                       ('outline', 'TODO: outline', [1, 2, 3]),
+                       ('tilt', 'rotar', [1, 2, 3])]
+
+        for entry in pen_options:
+            english_key = entry[0]
+            spanish_key = entry[1]
+            english_values = entry[2]
+            if len(entry) > 3:
+                spanish_values = entry[3]
+            else:
+                spanish_values = english_values
+
+            for english_value, spanish_value in zip(english_values, spanish_values):
+                self.clear()
+                tortuga.pen(**{english_key: english_value})
+                tortuga.forward(3)
+
+                turtle.pen(**{english_key: english_value})
+                turtle.forward(3)
+
+                tortuga.pen(**{english_key: spanish_value})
+                tortuga.forward(3)
+
+                turtle.pen(**{english_key: english_value})
+                turtle.forward(3)
+
+                tortuga.pen(**{spanish_key: spanish_value})
+                tortuga.forward(3)
+
+                turtle.pen(**{english_key: english_value})
+                turtle.forward(3)
+                self.assert_same()
+
+    def test_shape(self):
+        english_shapes = ['arrow', 'turtle', 'circle', 'square', 'triangle', 'classic']
+        spanish_shapes = ['flecha', 'tortuga', 'circulo', 'cuadrado', 'triangulo', 'clasico']
+
+        for english_shape, spanish_shape in zip(english_shapes, spanish_shapes):
+            tortuga.shape(spanish_shape)
+            tortuga.forward(3)
+            tortuga.figura(spanish_shape)
+            tortuga.forward(3)
+            tortuga.shape(english_shape)
+            tortuga.forward(3)
+
+            turtle.shape(english_shape)
+            turtle.forward(3)
+            turtle.shape(english_shape)
+            turtle.forward(3)
+            turtle.shape(english_shape)
+            turtle.forward(3)
+
+    def test_resizemode(self):
+        english_options = ['auto', 'user', 'noresize']
+        spanish_options = ['auto', 'usuario', 'sin_cambio_de_tamano']
+
+        for english_option, spanish_option in zip(english_options, spanish_options):
+            tortuga.resizemode(spanish_option)
+            tortuga.forward(3)
+            tortuga.modo_cambio_tamano(spanish_option)
+            tortuga.forward(3)
+            tortuga.resizemode(english_option)
+            tortuga.forward(3)
+
+            turtle.resizemode(english_option)
+            turtle.forward(3)
+            turtle.resizemode(english_option)
+            turtle.forward(3)
+            turtle.resizemode(english_option)
+            turtle.forward(3)
 
 
 class TestBasicMethodFunctionality(TestCase):
