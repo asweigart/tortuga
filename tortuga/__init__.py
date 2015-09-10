@@ -1283,11 +1283,11 @@ class TurtleScreen(TurtleScreenBase):
         If the argument doesn't represent a color,
         an error is raised.
         """
-        color = _convertNonEnglish(color)
 
         if len(color) == 1:
-            color = color[0]
+            color = _convertNonEnglish(color[0])
         if isinstance(color, str):
+            color = _convertNonEnglish(color)
             if self._iscolorstring(color) or color == "":
                 return color
             else:
