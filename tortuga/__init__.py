@@ -2546,6 +2546,7 @@ class TPen(object):
         else:
             p = {}
         p.update(pendict)
+        p = {_convertNonEnglish(key): _convertNonEnglish(value) for (key, value) in p.items()}
 
         _p_buf = {}
         for key in p:
@@ -2920,6 +2921,7 @@ class RawTurtle(TPen, TNavigator):
         >>> turtle.shape()
         'turtle'
         """
+        name = _convertNonEnglish(name)
         if name is None:
             return self.turtle.shapeIndex
         if not name in self.screen.getshapes():
@@ -4330,12 +4332,22 @@ def _convertNonEnglish(nonEnglish=''):
                     'derecho': 'right',
                     'izquierda': 'left',
                     'centro': 'center',
-                    'arrow': 'flecha',
-                    'turtle': 'tortuga',
-                    'circle': 'circulo',
-                    'square': 'cuadrado',
-                    'triangle': 'triangulo',
-                    'classic': 'clasico',
-                    'blank': 'nada',
+                    'tortuga': 'turtle',
+                    'cuadrado': 'square',
+                    'triangulo': 'triangle',
+                    'clasico': 'classic',
+                    'flecha': 'arrow',
+                    'nada': 'blank',
+                    'circulo': 'circle',
+                    'se_muestra': 'shown',
+                    'bajar_lapiz': 'pendown',
+                    'color_de_lapiz': 'pencolor',
+                    'color_de_relleno': 'fillcolor',
+                    'tamano_lapiz': 'pensize',
+                    'velocidad': 'speed',
+                    'modo_cambio_tamano': 'resizemode',
+                    'TODO: stretchfactor': 'stretchfactor',
+                    'TODO: outline': 'outline',
+                    'rotar': 'tilt'
                    }
     return convertWords.get(nonEnglish, nonEnglish)
