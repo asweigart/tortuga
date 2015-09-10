@@ -162,6 +162,7 @@ _spanish = {'TurtleScreen':          'PantallaTortuga',
             'write':                 'escribir',
             'showturtle':            'mostrar',
             'hideturtle':            'esconder',
+            'isvisible':             'esta_visible',
             'shape':                 'figura',
             'resizemode':            'modo_cambio_tamano',
             'shapesize':             'tamano_de_figura',
@@ -177,6 +178,9 @@ _spanish = {'TurtleScreen':          'PantallaTortuga',
             'begin_poly':            'comienzar_poligono',
             'end_poly':              'terminar_poligono',
             'get_poly':              'obtener_poligono',
+            'filling':               'relleno',
+            'begin_fill':            'comienzar_relleno',
+            'end_fill':              'cterminar_relleno',
             'clone':                 'clonar',
             'getturtle':             'obtener_tortuga',
             'getpen':                'obtener_lapiz',
@@ -4315,6 +4319,10 @@ Tortuga = Turtle
 Lapiz = Pen
 
 def _convertNonEnglish(nonEnglish=''):
+    if type(nonEnglish) != str:
+        return nonEnglish
+
+    nonEnglish = nonEnglish.lower()
     convertWords = {'negro': 'black',
                     'azul': 'blue',
                     'marron': 'brown',
@@ -4328,7 +4336,7 @@ def _convertNonEnglish(nonEnglish=''):
                     'rojo': 'red',
                     'auto': 'auto',
                     'usuario': 'user',
-                    'sin_cambio_de_tamano': 'noresize',
+                    'sin cambio de tamano': 'noresize',
                     'derecho': 'right',
                     'izquierda': 'left',
                     'centro': 'center',
