@@ -1,13 +1,13 @@
 # add canvasvg to requirements for running these tests
 
-import canvasvg
+from canvasvg.canvasvg import saveall
 import tempfile
 
 
 def convert_to_svg_string(canvas):
     canvas.update()
-    with tempfile.TemporaryFile() as temp_output:
-        canvasvg.saveall(temp_output.name, canvas)
+    with tempfile.NamedTemporaryFile() as temp_output:
+        saveall(temp_output.name, canvas)
         return open(temp_output.name, "rb").read()
 
 
