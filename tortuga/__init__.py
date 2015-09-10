@@ -4313,6 +4313,9 @@ Tortuga = Turtle
 Lapiz = Pen
 
 def _convertNonEnglish(nonEnglish=''):
+    if type(nonEnglish) != str:
+        return nonEnglish
+
     nonEnglish = nonEnglish.lower()
     convertWords = {'negro': 'black',
                     'azul': 'blue',
