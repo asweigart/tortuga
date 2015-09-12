@@ -120,7 +120,7 @@ from os.path import isfile, split, join
 from copy import deepcopy
 
 
-_spanish = {'TurtleScreen':          'PantallaTortuga',
+_SPANISH = {'TurtleScreen':          'PantallaTortuga',
             'RawTurtle':             'TortugaBruta',
             'RawPen':                'LapizBruto',
             'Turtle':                'Tortuga',
@@ -217,6 +217,42 @@ _spanish = {'TurtleScreen':          'PantallaTortuga',
             'setup':                 'configurar',
             'title':                 'titulo',
             }
+
+_SPANISH_SETTING_WORDS = {'negro': 'black',
+                          'azul': 'blue',
+                          'marron': 'brown',
+                          'naranja': 'orange',
+                          'gris': 'gray',
+                          'verde': 'green',
+                          'morado': 'purple',
+                          'rosa': 'pink',
+                          'amarillo': 'yellow',
+                          'blanco': 'white',
+                          'rojo': 'red',
+                          'auto': 'auto',
+                          'usuario': 'user',
+                          'sin_cambio_de_tamano': 'noresize',
+                          'derecho': 'right',
+                          'izquierda': 'left',
+                          'centro': 'center',
+                          'tortuga': 'turtle',
+                          'cuadrado': 'square',
+                          'triangulo': 'triangle',
+                          'clasico': 'classic',
+                          'flecha': 'arrow',
+                          'nada': 'blank',
+                          'circulo': 'circle',
+                          'se_muestra': 'shown',
+                          'bajar_lapiz': 'pendown',
+                          'color_de_lapiz': 'pencolor',
+                          'color_de_relleno': 'fillcolor',
+                          'tamano_lapiz': 'pensize',
+                          'velocidad': 'speed',
+                          'modo_cambio_tamano': 'resizemode',
+                          'factor_inclinacion': 'stretchfactor',
+                          'ancho_contorno': 'outline',
+                          'rotar': 'tilt'
+                         }
 
 _tg_classes = ['ScrolledCanvas', 'TurtleScreen', 'Screen',
                'RawTurtle', 'Turtle', 'RawPen', 'Pen', 'Shape', 'Vec2D']
@@ -2143,8 +2179,8 @@ class TNavigator(object):
 
     # Add Spanish names for all Turtle methods
     for englishName in _tg_turtle_functions:
-        if englishName in _spanish and englishName in locals():
-            locals()[_spanish[englishName]] = locals()[englishName]
+        if englishName in _SPANISH and englishName in locals():
+            locals()[_SPANISH[englishName]] = locals()[englishName]
 
 ## three dummy methods to be implemented by child class:
 
@@ -2620,8 +2656,8 @@ class TPen(object):
 
     # Add Spanish names for all Turtle methods
     for englishName in _tg_turtle_functions:
-        if englishName in _spanish and englishName in locals():
-            locals()[_spanish[englishName]] = locals()[englishName]
+        if englishName in _SPANISH and englishName in locals():
+            locals()[_SPANISH[englishName]] = locals()[englishName]
 
 ## three dummy methods to be implemented by child class:
 
@@ -3819,8 +3855,8 @@ class RawTurtle(TPen, TNavigator):
 
     # Add Spanish names for all Turtle methods
     for englishName in _tg_turtle_functions:
-        if englishName in _spanish and englishName in locals():
-            locals()[_spanish[englishName]] = locals()[englishName]
+        if englishName in _SPANISH and englishName in locals():
+            locals()[_SPANISH[englishName]] = locals()[englishName]
 
 RawPen = RawTurtle
 
@@ -3969,8 +4005,8 @@ class _Screen(TurtleScreen):
 
     # Add Spanish names for all Screen methods
     for englishName in _tg_screen_functions:
-        if englishName in _spanish and englishName in locals():
-            locals()[_spanish[englishName]] = locals()[englishName]
+        if englishName in _SPANISH and englishName in locals():
+            locals()[_SPANISH[englishName]] = locals()[englishName]
 
 class Turtle(RawTurtle):
     """RawTurtle auto-creating (scrolled) canvas.
@@ -4319,7 +4355,7 @@ if __name__ == "__main__":
 
 
 # Add Spanish names for the global functions.
-for englishTerm, nonEnglishTerm in _spanish.items():
+for englishTerm, nonEnglishTerm in _SPANISH.items():
     locals()[nonEnglishTerm] = locals()[englishTerm]
 
 # Add Spanish class names
@@ -4334,39 +4370,4 @@ def _convertNonEnglish(nonEnglish=''):
         return nonEnglish
 
     nonEnglish = nonEnglish.lower()
-    convertWords = {'negro': 'black',
-                    'azul': 'blue',
-                    'marron': 'brown',
-                    'naranja': 'orange',
-                    'gris': 'gray',
-                    'verde': 'green',
-                    'morado': 'purple',
-                    'rosa': 'pink',
-                    'amarillo': 'yellow',
-                    'blanco': 'white',
-                    'rojo': 'red',
-                    'auto': 'auto',
-                    'usuario': 'user',
-                    'sin_cambio_de_tamano': 'noresize',
-                    'derecho': 'right',
-                    'izquierda': 'left',
-                    'centro': 'center',
-                    'tortuga': 'turtle',
-                    'cuadrado': 'square',
-                    'triangulo': 'triangle',
-                    'clasico': 'classic',
-                    'flecha': 'arrow',
-                    'nada': 'blank',
-                    'circulo': 'circle',
-                    'se_muestra': 'shown',
-                    'bajar_lapiz': 'pendown',
-                    'color_de_lapiz': 'pencolor',
-                    'color_de_relleno': 'fillcolor',
-                    'tamano_lapiz': 'pensize',
-                    'velocidad': 'speed',
-                    'modo_cambio_tamano': 'resizemode',
-                    'factor_inclinacion': 'stretchfactor',
-                    'TODO: outline': 'outline',
-                    'rotar': 'tilt'
-                   }
-    return convertWords.get(nonEnglish, nonEnglish)
+    return _SPANISH_SETTING_WORDS.get(nonEnglish, nonEnglish)
