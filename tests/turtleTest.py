@@ -206,7 +206,7 @@ class TestBasicModuleFunctionality(TestCase):
 
     def test_resizemode(self):
         english_options = ['auto', 'user', 'noresize']
-        spanish_options = ['auto', 'usuario', 'sin_cambio_de_tamano']
+        spanish_options = ['auto', 'usuario', 'sin cambio de tamano']
 
         for english_option, spanish_option in zip(english_options, spanish_options):
             tortuga.resizemode(spanish_option)
@@ -350,7 +350,7 @@ class TestBasicMethodFunctionality(TestCase):
                        ('fillcolor', 'color_de_relleno', some_english_colors, some_spanish_colors),
                        ('pensize', 'tamano_lapiz', [1, 2, 3, 4, 5]),
                        ('speed', 'velocidad', range(1, 11)),
-                       ('resizemode', 'modo_cambio_tamano', ['auto', 'user', 'noresize'], ['auto', 'usuario', 'sin_cambio_de_tamano']),
+                       ('resizemode', 'modo_cambio_tamano', ['auto', 'user', 'noresize'], ['auto', 'usuario', 'sin cambio de tamano']),
                        ('stretchfactor', 'TODO: stretchfactor', [(1, 1), (1, 2), (2, 1), (2, 2)]),
                        ('outline', 'TODO: outline', [1, 2, 3]),
                        ('tilt', 'rotar', [1, 2, 3])]
@@ -406,7 +406,7 @@ class TestBasicMethodFunctionality(TestCase):
 
     def test_resizemode(self):
         english_options = ['auto', 'user', 'noresize']
-        spanish_options = ['auto', 'usuario', 'sin_cambio_de_tamano']
+        spanish_options = ['auto', 'usuario', 'sin cambio de tamano']
 
         for english_option, spanish_option in zip(english_options, spanish_options):
             self.tortuga.resizemode(spanish_option)

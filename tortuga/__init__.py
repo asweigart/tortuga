@@ -2172,6 +2172,9 @@ class TPen(object):
     Implements drawing properties.
     """
     def __init__(self, resizemode=_CFG["resizemode"]):
+        resizemode = _convertNonEnglish(resizemode)
+        assert resizemode in ('auto', 'user', 'noresize')
+
         self._resizemode = resizemode # or "user" or "noresize"
         self.undobuffer = None
         TPen._reset(self)
@@ -2215,6 +2218,9 @@ class TPen(object):
         if rmode is None:
             return self._resizemode
         rmode = rmode.lower()
+
+        rmode = _convertNonEnglish(rmode)
+
         if rmode in ["auto", "user", "noresize"]:
             self.pen(resizemode=rmode)
 
@@ -2550,11 +2556,14 @@ class TPen(object):
         else:
             p = {}
         p.update(pendict)
-        p = {_convertNonEnglish(key): _convertNonEnglish(value) for (key, value) in p.items()}
 
-        _p_buf = {}
+        # Translate any non-English settings to English, if applicable
+        for k, v in list(p.items()): # the loop modifies p dict, so duplicate the items first
+            p[_convertNonEnglish(k)] = _convertNonEnglish(v)
+
+        _p_buf = {} # _p_buf is a copy of the dict for the undo buffer
         for key in p:
-            _p_buf[key] = _pd[key]
+            _p_buf[key] = _pd.get(key, p[key])
 
         if self.undobuffer:
             self.undobuffer.push(("pen", _p_buf))
@@ -2586,6 +2595,7 @@ class TPen(object):
         if "speed" in p:
             self._speed = p["speed"]
         if "resizemode" in p:
+            assert self._resizemode in ('auto', 'user', 'noresize')
             self._resizemode = p["resizemode"]
         if "stretchfactor" in p:
             sf = p["stretchfactor"]
@@ -3152,6 +3162,7 @@ class RawTurtle(TPen, TNavigator):
         its shape, resizemode, stretch and tilt etc."""
         screen = self.screen
         shape = screen._shapes[self.turtle.shapeIndex]
+
         ttype = shape._type
         titem = self.turtle._item
         if self._shown and screen._updatecounter == 0 and screen._tracing > 0:
