@@ -4347,7 +4347,7 @@ def _convertNonEnglish(nonEnglish=''):
                     'rojo': 'red',
                     'auto': 'auto',
                     'usuario': 'user',
-                    'sin cambio de tamano': 'noresize',
+                    'sin_cambio_de_tamano': 'noresize',
                     'derecho': 'right',
                     'izquierda': 'left',
                     'centro': 'center',
@@ -4365,7 +4365,7 @@ def _convertNonEnglish(nonEnglish=''):
                     'tamano_lapiz': 'pensize',
                     'velocidad': 'speed',
                     'modo_cambio_tamano': 'resizemode',
-                    'TODO: stretchfactor': 'stretchfactor',
+                    'factor_inclinacion': 'stretchfactor',
                     'TODO: outline': 'outline',
                     'rotar': 'tilt'
                    }
