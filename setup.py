@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='Tortuga',
-    version='0.0.2',
+    version='0.0.3',
     url='https://github.com/asweigart/tortuga',
     author='Al Sweigart',
     author_email='al@inventwithpython.com',
