@@ -150,7 +150,7 @@ class TestBasicModuleFunctionality(TestCase):
                        ('fillcolor', 'color_de_relleno', some_english_colors, some_spanish_colors),
                        ('pensize', 'tamano_lapiz', [1, 2, 3, 4, 5]),
                        ('speed', 'velocidad', range(1, 11)),
-                       ('resizemode', 'modo_cambio_tamano', ['auto', 'user', 'noresize'], ['auto', 'usuario', 'sin_cambio_de_tamano']),
+                       ('resizemode', 'modo_cambio_tamano', ['auto', 'user', 'noresize'], ['auto', 'usuario', 'sin cambio de tamano']),
                        ('stretchfactor', 'TODO: stretchfactor', [(1, 1), (1, 2), (2, 1), (2, 2)]),
                        ('outline', 'TODO: outline', [1, 2, 3]),
                        ('tilt', 'rotar', [1, 2, 3])]
