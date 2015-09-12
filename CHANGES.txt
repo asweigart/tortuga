@@ -1,0 +1,2 @@
+v0.1.2, 2015/09/12 -- Increased test coverage. Thanks Toby!
+v0.1.1, 2015/09/12 -- Initial release.
