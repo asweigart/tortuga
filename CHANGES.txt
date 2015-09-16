@@ -1,5 +1,6 @@
-v0.0.5, 2015/09/12 -- Added pymsgbox dependency.
-v0.0.4, 2015/09/12 -- Added "from tortuga import *" syntax support.
+v0.0.6, 2015/09/16 -- Made pencolor() return Spanish strings instead of English. TODO: The other functions will have to be changed as well.
+v0.0.5, 2015/09/16 -- Added pymsgbox dependency.
+v0.0.4, 2015/09/16 -- Added "from tortuga import *" syntax support.
 v0.0.3, 2015/09/12 -- Refactoring.
 v0.0.2, 2015/09/12 -- Increased test coverage. Thanks Toby!
 v0.0.1, 2015/09/12 -- Initial release.
