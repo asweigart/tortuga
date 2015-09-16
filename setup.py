@@ -4,13 +4,14 @@ from setuptools import setup
 
 setup(
     name='Tortuga',
-    version='0.0.4',
+    version='0.0.5',
     url='https://github.com/asweigart/tortuga',
     author='Al Sweigart',
     author_email='al@inventwithpython.com',
     description=("Una aplicación española del módulo turtle.py de Python. A Spanish implementation of Python's turtle.py module."),
     license='BSD',
     packages=['tortuga'],
+    install_requires=['pymsgbox'],
     test_suite='tests',
     keywords="turtle logo spanish",
     classifiers=[
