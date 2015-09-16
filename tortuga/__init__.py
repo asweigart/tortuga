@@ -254,6 +254,8 @@ _SPANISH_SETTING_WORDS = {'negro': 'black',
                           'rotar': 'tilt'
                          }
 
+_ENGLISH_SETTING_WORDS = dict([(v, k) for k, v in _SPANISH_SETTING_WORDS.items()])
+
 _tg_classes = ['ScrolledCanvas', 'TurtleScreen', 'Screen',
                'RawTurtle', 'Turtle', 'RawPen', 'Pen', 'Shape', 'Vec2D']
 _tg_screen_functions = ['addshape', 'bgcolor', 'bgpic', 'bye',
@@ -2445,7 +2447,7 @@ class TPen(object):
                 return
             self.pen(pencolor=color)
         else:
-            return self._color(self._pencolor)
+            return _convertFromEnglish(self._color(self._pencolor))
 
     def fillcolor(self, *args):
         """ Return or set the fillcolor.
@@ -4365,9 +4367,16 @@ LapizBruto = RawPen
 Tortuga = Turtle
 Lapiz = Pen
 
-def _convertNonEnglish(nonEnglish=''):
+def _convertNonEnglish(nonEnglish):
     if type(nonEnglish) != str:
         return nonEnglish
 
     nonEnglish = nonEnglish.lower()
     return _SPANISH_SETTING_WORDS.get(nonEnglish, nonEnglish)
+
+def _convertFromEnglish(english):
+    if type(english) != str:
+        return english
+
+    english = english.lower()
+    return _ENGLISH_SETTING_WORDS.get(english, english)
