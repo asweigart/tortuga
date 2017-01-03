@@ -1,5 +1,11 @@
 import sys
 import os
+import tempfile
+
+try:
+    from canvasvg.canvasvg import saveall
+except ImportError:
+    sys.exit('These tests require the canvasvg module. Run "pip install canvasvg".')
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -7,25 +13,42 @@ import turtle
 import unittest
 from unittest import TestCase
 import tortuga
-import testUtil
 
 spanish_colors = 'azul marron naranja gris verde morado rosa amarillo blanco negro rojo'.split()
 english_colors = 'blue brown orange gray green purple pink yellow white black red'.split()
 
+def convert_to_svg_string(canvas):
+    canvas.update()
+    with tempfile.NamedTemporaryFile(delete=False) as temp_output:
+        temp_name = temp_output.name
+        saveall(temp_name, canvas)
+
+    # The temp file must be reopened because Windows does not support reading AND writing NamedTemporaryFile.
+    with open(temp_name, 'rb') as temp_output:
+        content = temp_output.read()
+    os.remove(temp_name)
+
+    return content
+
+
+def assert_canvas_equal(canvas1, canvas2):
+    assert convert_to_svg_string(canvas1) == convert_to_svg_string(canvas2)
+
+
+def assert_canvas_not_equal(canvas1, canvas2):
+    assert convert_to_svg_string(canvas1) != convert_to_svg_string(canvas2)
+
 
 class TestBasicModuleFunctionality(TestCase):
     def setUp(self):
-        self.clear()
-
-    def clear(self):
         turtle.clear()
         tortuga.clear()
 
     def assert_same(self):
-        testUtil.assert_canvas_equal(turtle.getscreen().getcanvas(), tortuga.getscreen().getcanvas())
+        assert_canvas_equal(turtle.getscreen().getcanvas(), tortuga.getscreen().getcanvas())
 
     def assert_different(self):
-        testUtil.assert_canvas_not_equal(turtle.getscreen().getcanvas(), tortuga.getscreen().getcanvas())
+        assert_canvas_not_equal(turtle.getscreen().getcanvas(), tortuga.getscreen().getcanvas())
 
     def test_simple_functions(self):
         turtle.forward(50)
@@ -165,7 +188,8 @@ class TestBasicModuleFunctionality(TestCase):
                 spanish_values = english_values
 
             for english_value, spanish_value in zip(english_values, spanish_values):
-                self.clear()
+                turtle.clear()
+                tortuga.clear()
                 tortuga.pen(**{english_key: english_value})
                 tortuga.forward(3)
 
@@ -229,14 +253,15 @@ class TestBasicMethodFunctionality(TestCase):
         self.clear()
 
     def clear(self):
+        # TODO - why isn't this calling clear() like TestBasicModuleFunctionality?
         self.turtle = turtle.Turtle()
         self.tortuga = tortuga.Tortuga()
 
     def assert_same(self):
-        testUtil.assert_canvas_equal(self.turtle.getscreen().getcanvas(), self.tortuga.getscreen().getcanvas())
+        assert_canvas_equal(self.turtle.getscreen().getcanvas(), self.tortuga.getscreen().getcanvas())
 
     def assert_different(self):
-        testUtil.assert_canvas_not_equal(self.turtle.getscreen().getcanvas(), self.tortuga.getscreen().getcanvas())
+        assert_canvas_not_equal(self.turtle.getscreen().getcanvas(), self.tortuga.getscreen().getcanvas())
 
     def test_simple_methods(self):
         self.turtle.forward(50)
