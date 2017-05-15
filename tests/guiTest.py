@@ -31,6 +31,6 @@ t.izquierda(45)
 t.tamano_lapiz(5)
 for c in ('azul marron naranja gris verde morado rosa amarillo blanco negro rojo'.split()):
     t.color(c)
-    t.forward(10)
+    t.adelante(10)
 
 tortuga.exitonclick()
