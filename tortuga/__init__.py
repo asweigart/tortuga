@@ -120,141 +120,143 @@ from os.path import isfile, split, join
 from copy import deepcopy
 
 
-_SPANISH = {'TurtleScreen':          'PantallaTortuga',
-            'RawTurtle':             'TortugaBruta',
-            'RawPen':                'LapizBruto',
-            'Turtle':                'Tortuga',
-            'Pen':                   'Lapiz',
-            'forward':               'adelante',
-            'back':                  'atras',
-            'right':                 'derecho',
-            'left':                  'izquierda',
-            'goto':                  'ir_a',
-            'setx':                  'fijar_x',
-            'sety':                  'fijar_y',
-            'setheading':            'fijar_direccion',
-            'home':                  'origen',
-            'circle':                'circulo',
-            'dot':                   'punto',
-            'stamp':                 'sello',
-            'clearstamp':            'borrar_sello',
-            'clearstamps':           'borrar_sellos',
-            'undo':                  'deshacer',
-            'speed':                 'velocidad',
-            'position':              'posicion',
-            'towards':               'hacia',
-            'xcor':                  'posicion_x',
-            'ycor':                  'posicion_y',
-            'heading':               'direccion',
-            'distance':              'distancia',
-            'degrees':               'grados',
-            'radians':               'radianes',
-            'pendown':               'bajar_lapiz',
-            'penup':                 'subir_lapiz',
-            'pensize':               'tamano_lapiz',
-            'pen':                   'lapiz',
-            'isdown':                'esta_presionada',
-            'color':                 'color',
-            'pencolor':              'color_de_lapiz',
-            'fillcolor':             'color_de_relleno',
-            'reset':                 'reiniciar',
-            'clear':                 'borrar',
-            'write':                 'escribir',
-            'showturtle':            'mostrar',
-            'hideturtle':            'esconder',
-            'isvisible':             'esta_visible',
-            'shape':                 'figura',
-            'resizemode':            'modo_cambio_tamano',
-            'shapesize':             'tamano_de_figura',
-            'shearfactor':           'factor_de_inclinacion',
-            'settiltangle':          'fijar_angulo_rotacion',
-            'tiltangle':             'angulo_de_rotacion',
-            'tilt':                  'rotar',
-            'shapetransform':        'transformar_figura',
-            'get_shapepoly':         'obtener_poligono',
-            'onclick':               'al_hacer_clic',
-            'onrelease':             'al_liberar',
-            'ondrag':                'al_arrastrar',
-            'begin_poly':            'comienzar_poligono',
-            'end_poly':              'terminar_poligono',
-            'get_poly':              'obtener_poligono',
-            'filling':               'relleno',
-            'begin_fill':            'comienzar_relleno',
-            'end_fill':              'cterminar_relleno',
-            'clone':                 'clonar',
-            'getturtle':             'obtener_tortuga',
-            'getpen':                'obtener_lapiz',
-            'getscreen':             'obtener_pantalla',
-            'setundobuffer':         'establecer_bufer_deshacer',
-            'undobufferentries':     'tamano_bufer_deshacer',
-            'bgcolor':               'color_fondo',
-            'bgpic':                 'imagen_fondo',
-            'clear':                 'borrar',
-            'reset':                 'reiniciar',
-            'screensize':            'tamano_de_pantalla',
-            'setworldcoordinates':   'fijar_coordenadas_mundo',
-            'delay':                 'retraso',
-            'tracer':                'animacion',
-            'update':                'redibujar',
-            'listen':                'escuchar',
-            'onkey':                 'al_soltar_la_tecla',
-            'onkeypress':            'al_pulsar_la_tecla',
-            'ontimer':               'temporizador',
-            'mainloop':              'bucle_principal',
-            'done':                  'hecho',
-            'mode':                  'modo',
-            'colormode':             'modo_de_color',
-            'getcanvas':             'obtener_el_lienzo',
-            'getshapes':             'conseguir_figuras',
-            'register_shape':        'registrar_figura',
-            'turtles':               'tortugas',
-            'window_height':         'altura_de_ventana',
-            'window_width':          'ancho_de_ventana',
-            'textinput':             'entrada_texto',
-            'numinput':              'entrada_numero',
-            'bye':                   'adios',
-            'exitonclick':           'salida_en_clic',
-            'setup':                 'configurar',
-            'title':                 'titulo',
-            }
+_SPANISH_IDENTIFIERS = {
+'TurtleScreen': 'PantallaTortuga',
+'RawTurtle': 'TortugaBruta',
+'RawPen':'LapizBruto',
+'Turtle':'Tortuga',
+'Pen': 'Lapiz',
+'forward':'adelante',
+'back': 'atras',
+'right': 'derecho',
+'left': 'izquierda',
+'goto': 'ir_a',
+'setx': 'fijar_x',
+'sety': 'fijar_y',
+'setheading': 'fijar_direccion',
+'home': 'origen',
+'circle':'circulo',
+'dot': 'punto',
+'stamp': 'sello',
+'clearstamp': 'borrar_sello',
+'clearstamps': 'borrar_sellos',
+'undo': 'deshacer',
+'speed': 'velocidad',
+'position': 'posicion',
+'towards':'hacia',
+'xcor': 'posicion_x',
+'ycor': 'posicion_y',
+'heading':'direccion',
+'distance': 'distancia',
+'degrees':'grados',
+'radians':'radianes',
+'pendown':'bajar_lapiz',
+'penup': 'subir_lapiz',
+'pensize':'tamano_lapiz',
+'pen': 'lapiz',
+'isdown':'esta_presionada',
+'color': 'color',
+'pencolor': 'color_de_lapiz',
+'fillcolor': 'color_de_relleno',
+'reset': 'reiniciar',
+'clear': 'borrar',
+'write': 'escribir',
+'showturtle': 'mostrar',
+'hideturtle': 'esconder',
+'isvisible': 'esta_visible',
+'shape': 'figura',
+'resizemode': 'modo_cambio_tamano',
+'shapesize': 'tamano_de_figura',
+'shearfactor': 'factor_de_inclinacion',
+'settiltangle': 'fijar_angulo_rotacion',
+'tiltangle': 'angulo_de_rotacion',
+'tilt': 'rotar',
+'shapetransform':'transformar_figura',
+'get_shapepoly': 'obtener_poligono',
+'onclick':'al_hacer_clic',
+'onrelease': 'al_liberar',
+'ondrag':'al_arrastrar',
+'begin_poly': 'comienzar_poligono',
+'end_poly': 'terminar_poligono',
+'get_poly': 'obtener_poligono',
+'filling':'relleno',
+'begin_fill': 'comienzar_relleno',
+'end_fill': 'cterminar_relleno',
+'clone': 'clonar',
+'getturtle': 'obtener_tortuga',
+'getpen':'obtener_lapiz',
+'getscreen': 'obtener_pantalla',
+'setundobuffer': 'establecer_bufer_deshacer',
+'undobufferentries': 'tamano_bufer_deshacer',
+'bgcolor':'color_fondo',
+'bgpic': 'imagen_fondo',
+'clear': 'borrar',
+'reset': 'reiniciar',
+'screensize': 'tamano_de_pantalla',
+'setworldcoordinates': 'fijar_coordenadas_mundo',
+'delay': 'retraso',
+'tracer':'animacion',
+'update':'redibujar',
+'listen':'escuchar',
+'onkey': 'al_soltar_la_tecla',
+'onkeypress': 'al_pulsar_la_tecla',
+'ontimer':'temporizador',
+'mainloop': 'bucle_principal',
+'done': 'hecho',
+'mode': 'modo',
+'colormode': 'modo_de_color',
+'getcanvas': 'obtener_el_lienzo',
+'getshapes': 'conseguir_figuras',
+'register_shape':'registrar_figura',
+'turtles':'tortugas',
+'window_height': 'altura_de_ventana',
+'window_width': 'ancho_de_ventana',
+'textinput': 'entrada_texto',
+'numinput': 'entrada_numero',
+'bye': 'adios',
+'exitonclick': 'salida_en_clic',
+'setup': 'configurar',
+'title': 'titulo',
+}
 
-_SPANISH_SETTING_WORDS = {'negro': 'black',
-                          'azul': 'blue',
-                          'marron': 'brown',
-                          'naranja': 'orange',
-                          'gris': 'gray',
-                          'verde': 'green',
-                          'morado': 'purple',
-                          'rosa': 'pink',
-                          'amarillo': 'yellow',
-                          'blanco': 'white',
-                          'rojo': 'red',
-                          'auto': 'auto',
-                          'usuario': 'user',
-                          'sin_cambio_tamano': 'noresize',
-                          'derecho': 'right',
-                          'izquierda': 'left',
-                          'centro': 'center',
-                          'tortuga': 'turtle',
-                          'cuadrado': 'square',
-                          'triangulo': 'triangle',
-                          'clasico': 'classic',
-                          'flecha': 'arrow',
-                          'nada': 'blank',
-                          'circulo': 'circle',
-                          'se_muestra': 'shown',
-                          'bajar_lapiz': 'pendown',
-                          'color_de_lapiz': 'pencolor',
-                          'color_de_relleno': 'fillcolor',
-                          'tamano_lapiz': 'pensize',
-                          'velocidad': 'speed',
-                          'modo_cambio_tamano': 'resizemode',
-                          'factor_estiramiento': 'stretchfactor',
-                          'ancho_contorno': 'outline',
-                          'rotar': 'tilt'
-                         }
+_SPANISH_STRINGS = {
+'negro': 'black',
+'azul': 'blue',
+'marron': 'brown',
+'naranja': 'orange',
+'gris': 'gray',
+'verde': 'green',
+'morado': 'purple',
+'rosa': 'pink',
+'amarillo': 'yellow',
+'blanco': 'white',
+'rojo': 'red',
+'auto': 'auto',
+'usuario': 'user',
+'sin_cambio_tamano': 'noresize',
+'derecho': 'right',
+'izquierda': 'left',
+'centro': 'center',
+'tortuga': 'turtle',
+'cuadrado': 'square',
+'triangulo': 'triangle',
+'clasico': 'classic',
+'flecha': 'arrow',
+'nada': 'blank',
+'circulo': 'circle',
+'se_muestra': 'shown',
+'bajar_lapiz': 'pendown',
+'color_de_lapiz': 'pencolor',
+'color_de_relleno': 'fillcolor',
+'tamano_lapiz': 'pensize',
+'velocidad': 'speed',
+'modo_cambio_tamano': 'resizemode',
+'factor_estiramiento': 'stretchfactor',
+'ancho_contorno': 'outline',
+'rotar': 'tilt'
+}
 
-_ENGLISH_SETTING_WORDS = dict([(v, k) for k, v in _SPANISH_SETTING_WORDS.items()])
+_ENGLISH_STRINGS = dict([(v, k) for k, v in _SPANISH_STRINGS.items()])
 
 _tg_classes = ['ScrolledCanvas', 'TurtleScreen', 'Screen',
                'RawTurtle', 'Turtle', 'RawPen', 'Pen', 'Shape', 'Vec2D']
@@ -281,7 +283,7 @@ _tg_turtle_functions = ['back', 'backward', 'begin_fill', 'begin_poly', 'bk',
 _tg_utilities = ['write_docstringdict', 'done']
 
 __all__ = (_tg_classes + _tg_screen_functions + _tg_turtle_functions +
-           _tg_utilities + ['Terminator'] + list(_SPANISH.values())) # + _math_functions)
+           _tg_utilities + ['Terminator'] + list(_SPANISH_IDENTIFIERS.values())) # + _math_functions)
 
 _alias_list = ['addshape', 'backward', 'bk', 'fd', 'ht', 'lt', 'pd', 'pos',
                'pu', 'rt', 'seth', 'setpos', 'setposition', 'st',
@@ -2181,8 +2183,8 @@ class TNavigator(object):
 
     # Add Spanish names for all Turtle methods
     for englishName in _tg_turtle_functions:
-        if englishName in _SPANISH and englishName in locals():
-            locals()[_SPANISH[englishName]] = locals()[englishName]
+        if englishName in _SPANISH_IDENTIFIERS and englishName in locals():
+            locals()[_SPANISH_IDENTIFIERS[englishName]] = locals()[englishName]
 
 ## three dummy methods to be implemented by child class:
 
@@ -2658,8 +2660,8 @@ class TPen(object):
 
     # Add Spanish names for all Turtle methods
     for englishName in _tg_turtle_functions:
-        if englishName in _SPANISH and englishName in locals():
-            locals()[_SPANISH[englishName]] = locals()[englishName]
+        if englishName in _SPANISH_IDENTIFIERS and englishName in locals():
+            locals()[_SPANISH_IDENTIFIERS[englishName]] = locals()[englishName]
 
 ## three dummy methods to be implemented by child class:
 
@@ -3857,8 +3859,8 @@ class RawTurtle(TPen, TNavigator):
 
     # Add Spanish names for all Turtle methods
     for englishName in _tg_turtle_functions:
-        if englishName in _SPANISH and englishName in locals():
-            locals()[_SPANISH[englishName]] = locals()[englishName]
+        if englishName in _SPANISH_IDENTIFIERS and englishName in locals():
+            locals()[_SPANISH_IDENTIFIERS[englishName]] = locals()[englishName]
 
 RawPen = RawTurtle
 
@@ -4007,8 +4009,8 @@ class _Screen(TurtleScreen):
 
     # Add Spanish names for all Screen methods
     for englishName in _tg_screen_functions:
-        if englishName in _SPANISH and englishName in locals():
-            locals()[_SPANISH[englishName]] = locals()[englishName]
+        if englishName in _SPANISH_IDENTIFIERS and englishName in locals():
+            locals()[_SPANISH_IDENTIFIERS[englishName]] = locals()[englishName]
 
 class Turtle(RawTurtle):
     """RawTurtle auto-creating (scrolled) canvas.
@@ -4357,7 +4359,7 @@ if __name__ == "__main__":
 
 
 # Add Spanish names for the global functions.
-for englishTerm, nonEnglishTerm in _SPANISH.items():
+for englishTerm, nonEnglishTerm in _SPANISH_IDENTIFIERS.items():
     locals()[nonEnglishTerm] = locals()[englishTerm]
 
 # Add Spanish class names
@@ -4372,11 +4374,11 @@ def _convertNonEnglish(nonEnglish):
         return nonEnglish
 
     nonEnglish = nonEnglish.lower()
-    return _SPANISH_SETTING_WORDS.get(nonEnglish, nonEnglish)
+    return _SPANISH_STRINGS.get(nonEnglish, nonEnglish)
 
 def _convertFromEnglish(english):
     if type(english) != str:
         return english
 
     english = english.lower()
-    return _ENGLISH_SETTING_WORDS.get(english, english)
+    return _ENGLISH_STRINGS.get(english, english)
