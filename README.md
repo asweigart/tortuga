@@ -25,3 +25,5 @@ Only the names have been added. The functionality has not changed. This code:
 The main wiki page for the Turtle Translation project is at https://github.com/asweigart/idle-reimagined/wiki/Turtle-Translations
 
 A full Spanish-language tutorial is being written.
+
+The end goal of the Tortuga project is to add dozens of languages to turtle.py in the Python standard library. A language-switching function (such as `turtle.tortuga()` for Spanish) would change the language used by turtle.py.
