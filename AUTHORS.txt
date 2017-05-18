@@ -7,6 +7,9 @@ people who have submitted patches, reported bugs, added translations, helped
 answer newbie questions, and generally made Tortuga that much better:
 
 Al Sweigart https://github.com/asweigart/
+Alejandro Pernin https://github.com/aleperno
+Anand Krishnakumar https://github.com/anandkrishnakumar
+Narrat https://github.com/Narrat
 Toby Nance https://github.com/tobynance
 
 Please contact the project maintainers if your name has unfortunately been omitted.
