@@ -27,6 +27,21 @@ A full Spanish-language tutorial is being written.
 
 The end goal of the Tortuga project is to add dozens of languages to turtle.py in the Python standard library. A language-switching function (such as `turtle.tortuga()` for Spanish) would change the language used by turtle.py.
 
+# What the Tortuga Project is Not
+
+Tortuga is not attempting to translate the Python keywords or the entirety of the Python standard library. T
+
+# Things to Translate
+
+- Module names (so that `import turtle` can be replaced by `from turtle import tortuga`)
+- Function, method, and class names
+- Strings that are passed to and returned from these functions & methods.
+- The docstrings and `help()` system
+- The Python documentation for turtle.py
+- Error messages from turtle.py
+- An example-based turtle tutorial written in "simple English"
+
+
 # Translation Process
 
 1. The identifiers (i.e. function and method names) and strings (i.e. strings for colors) are translated for a language and added to the Google spreadsheet. Please contact Al at al@inventwithpython.com for access to this spreadsheet.
@@ -50,6 +65,9 @@ The end goal of the Tortuga project is to add dozens of languages to turtle.py i
     ...
 
 1. TODO - finish this section
+
+1. Translate the simple English tutorial
+
 
 # Python Bug / Issue 24990
 
@@ -79,3 +97,5 @@ The groundwork for translating turtle.py's docstrings has already been laid out.
         """
 
 Note that the `'language'` key in the `_CFG` dictionary and the `_LANGUAGE` variable refer to the language for docstrings, not function or method names. These predate the Tortuga project.
+
+TODO - change help() text
