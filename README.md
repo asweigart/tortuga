@@ -41,8 +41,19 @@ Tortuga is not attempting to translate the Python keywords or the entirety of th
 - Error messages from turtle.py
 - An example-based turtle tutorial written in "simple English"
 
+# Instructions for Translators
 
-# Translation Process
+1. Go to the Google spreadsheet (ask Al for the URL: al@inventwithpython.com or @AlSweigart on Twitter)
+
+1. Open up https://scratch.mit.edu and click Create at the top to run the Scratch editor. For general consistency, we'll be copying the translations from Scratch where we can. The "In Scratch UI" column will tell you which Scratch category (the colored labels at the top-middle part of the page, e.g. Motion, Looks, Pen). You can see the translations by clicking the globe icon in the menu bar and selecting a language.
+
+1. Fill in the translatons. Use the correct PEP-8 naming schemes: CapitalizedLetters for class names, lowercase_separated_by_underscores for everything else. Note that many of the English function names don't use underscores (such as `pencolor` or `showturtle`, but this is a mistake. Use underscores in your translatons.
+
+1. Translated names can include accented characters and unicode, but can't include apostraphes. Use a name that makes the most sense in the translated language.
+
+1. Double check for spelling and formatting. These translations need to be perfect since they can't easily be changed later on.
+
+# Process for Adding Translations to Code
 
 1. The identifiers (i.e. function and method names) and strings (i.e. strings for colors) are translated for a language and added to the Google spreadsheet. Please contact Al at al@inventwithpython.com for access to this spreadsheet.
 
