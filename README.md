@@ -110,3 +110,11 @@ The groundwork for translating turtle.py's docstrings has already been laid out.
 Note that the `'language'` key in the `_CFG` dictionary and the `_LANGUAGE` variable refer to the language for docstrings, not function or method names. These predate the Tortuga project.
 
 TODO - change help() text
+
+# Special Thanks To
+
+Gregor Lingl for his work on the original turtle.py module.
+
+Ari Lacenski for the Spanish translation
+Seunghyo Seo for the Korean translation
+Brian Ward for the German translation
