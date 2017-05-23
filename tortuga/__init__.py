@@ -197,7 +197,7 @@ _SPANISH_IDENTIFIERS = {
 'delay': 'retraso',
 'tracer':'animacion',
 'update':'redibujar',
-'listen':'escuchar',
+'listen':'enfocar',
 'onkey': 'al_soltar_la_tecla',
 'onkeypress': 'al_pulsar_la_tecla',
 'ontimer':'temporizador',
