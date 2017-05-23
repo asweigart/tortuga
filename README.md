@@ -118,3 +118,4 @@ Gregor Lingl for his work on the original turtle.py module.
 Ari Lacenski for the Spanish translation
 Seunghyo Seo for the Korean translation
 Brian Ward for the German translation
+Onur Ozay for the Turkish translation
