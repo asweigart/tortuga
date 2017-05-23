@@ -111,6 +111,12 @@ Note that the `'language'` key in the `_CFG` dictionary and the `_LANGUAGE` vari
 
 TODO - change help() text
 
+# Additional Work
+
+It'd be great to add this to the http://pythonturtle.org website, which provides stand-alone installers for using turtle.py. This project hasn't been maintained in a while and I'm not sure about its current popularity, but it could make use of the internationalization work of Tortuga.
+
+It's GitHub page is https://github.com/cool-RR/PythonTurtle
+
 # Special Thanks To
 
 Gregor Lingl for his work on the original turtle.py module.
