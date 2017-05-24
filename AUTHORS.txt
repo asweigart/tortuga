@@ -11,6 +11,7 @@ Alejandro Pernin https://github.com/aleperno
 Anand Krishnakumar https://github.com/anandkrishnakumar
 Ari Lacenski
 Brian Ward
+Erman Korkut
 Onur Ozay
 Narrat https://github.com/Narrat
 Toby Nance https://github.com/tobynance
