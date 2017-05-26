@@ -11,6 +11,7 @@ Alejandro Pernin https://github.com/aleperno
 Anand Krishnakumar https://github.com/anandkrishnakumar
 Ari Lacenski
 Brian Ward
+Catherine Devlin https://github.com/catherinedevlin
 Erman Korkut
 Onur Ozay
 Narrat https://github.com/Narrat
