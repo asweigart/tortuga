@@ -125,3 +125,9 @@ Ari Lacenski for the Spanish translation
 Seunghyo Seo for the Korean translation
 Brian Ward and Catherine Devlin for the German translation
 Onur Ozay and Erman Korkut for the Turkish translation
+
+
+Support
+-------
+
+If you find this project helpful and would like to support its development, [consider donating to its creator on Patreon](https://www.patreon.com/AlSweigart).
