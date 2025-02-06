@@ -111,49 +111,37 @@ from contextlib import contextmanager
 from copy import deepcopy
 from tkinter import simpledialog
 
-
-
-ES = {'bgcolor': 'color_fondo', 'bgpic': 'imagen_fondo', 'bye': 'adiós', 'clearscreen': 'borrar_pantalla', 'colormode': 'modo_color', 'delay': 'retraso', 'exitonclick': 'salir_al_hacer_clic', 'getcanvas': 'obtener_lienzo', 'getshapes': 'obtener_formas', 'listen': 'enfocar_ventana', 'mainloop': 'bucle_principal', 'mode': 'modo', 'no_animation': 'sin_animación', 'numinput': 'ingresar_número', 'onkey': 'al_presionar_tecla', 'onkeypress': 'al_pulsar_tecla', 'onkeyrelease': 'al_soltar_tecla', 'onscreenclick': 'al_hacer_clic_en_pantalla', 'ontimer': 'en_temporizador', 'register_shape': 'agregar_forma', 'resetscreen': 'reiniciar_pantalla', 'save': 'ahorrar', 'screensize': 'tamaño_pantalla', 'setup': 'configurar', 'setworldcoordinates': 'establecer_coordenadas_mundo', 'textinput': 'ingresar_texto', 'title': 'título', 'tracer': 'tasa_dibujo', 'turtles': 'tortugas', 'update': 'actualizar', 'window_height': 'altura_la_ventana', 'window_width': 'ancho_la_ventana', 'back': 'hacia_atrás', 'begin_fill': 'comenzar_a_rellenar', 'begin_poly': 'comenzar_polígono', 'circle': 'círculo', 'clear': 'borrar', 'clearstamp': 'borrar_sello', 'clearstamps': 'borrar_todos_sellos', 'clone': 'clonar', 'color': 'color', 'degrees': 'grados', 'distance': 'distancia', 'dot': 'punto', 'end_fill': 'terminar_relleno', 'end_poly': 'terminar_polígono', 'fillcolor': 'color_relleno', 'filling': 'rellenando_ahora', 'forward': 'hacia_adelante', 'get_poly': 'obtener_último_polígono', 'getpen': 'obtener_pluma', 'getscreen': 'obtener_pantalla', 'get_shapepoly': 'obtener_polígono_forma', 'getturtle': 'obtener_tortuga', 'goto': 'ir_a', 'heading': 'dirección', 'hideturtle': 'ocultar_tortuga', 'home': 'origen', 'isdown': 'está_abajo', 'isvisible': 'es_visible', 'left': 'izquierda', 'onclick': 'al_hacer_clic', 'ondrag': 'al_arrastrar', 'onrelease': 'al_soltar', 'pen': 'pluma', 'pencolor': 'configuración_pluma', 'pendown': 'pluma_abajo', 'pensize': 'tamaño_pluma', 'penup': 'pluma_arriba', 'position': 'posición', 'radians': 'radianes', 'right': 'derecha', 'reset': 'reiniciar_pantalla', 'resizemode': 'modo_cambio_tamaño', 'setheading': 'establecer_dirección', 'setundobuffer': 'establecer_búfer_deshacer', 'setx': 'establecer_x', 'sety': 'establecer_y', 'shape': 'forma', 'shapesize': 'tamaño_forma', 'shapetransform': 'transformación_forma', 'shearfactor': 'factor_cizalladura', 'showturtle': 'mostrar_tortuga', 'speed': 'velocidad', 'stamp': 'sello', 'teleport': 'teletransportar', 'tilt': 'rotar_cursor', 'tiltangle': 'rotar_cursor_hacia', 'towards': 'hacia', 'undo': 'deshacer', 'undobufferentries': 'entradas_búfer_deshacer', 'write': 'escribir', 'xcor': 'posición_x', 'ycor': 'posición_y', 'picname': 'imagen', 'cmode': 'modo_color', 'xdummy': 'ignorar_x', 'ydummy': 'ignorar_y', 'prompt': 'mensaje', 'default': 'predeterminado', 'minval': 'valor_mínimo', 'maxval': 'valor_máximo', 'filename': 'nombre_de_archivo', 'overwrite': 'sobrescribir', 'fun': 'función', 'key': 'tecla_teclado', 'btn': 'botón', 'add': 'agregar_forma', 'canvwidth': 'ancho_lienzo', 'canvheight': 'altura_lienzo', 'bg': 'fondo', 'width': 'ancho', 'height': 'alto', 'startx': 'inicio_x', 'starty': 'inicio_y', 'llx': 'x_inferior_izquierda', 'lly': 'y_inferior_izquierda', 'urx': 'x_superior_derecha', 'ury': 'y_superior_derecha', 'titlestring': 'título', 'radius': 'radio', 'extent': 'extensión', 'steps': 'pasos', 'stampid': 'ID_sello', 'fullcircle': 'círculo_completo', 'size': 'tamaño', 'pendict': 'configuraciones_pluma', 'angle': 'ángulo', 'rmode': 'modo_cambio_tamaño', 'to_angle': 'ángulo', 'name': 'nombre', 'stretch_wid': 'ancho_estiramiento', 'stretch_len': 'longitud_estiramiento', 'outline': 'contorno', 'shear': 'cizalladura', 'fill_gap': 'hueco_relleno', 'move': 'mover', 'align': 'alinear', 'font': 'fuente', 'black': 'negro', 'blue': 'azul', 'brown': 'marrón', 'orange': 'naranja', 'gray': 'gris', 'grey': 'gris', 'green': 'verde', 'purple': 'morado', 'violet': 'violeta', 'pink': 'rosa', 'yellow': 'amarillo', 'white': 'blanco', 'red': 'rojo', 'arrow': 'flecha', 'blank': 'vacío', 'classic': 'clásico', 'square': 'cuadrado', 'triangle': 'triángulo', 'turtle': 'tortuga', 'polygon': 'polígono', 'image': 'imagen', 'compound': 'compuesto', 'center': 'centro', 'nopic': 'nada'}
-_ES_INVERSE = {v: k for k, v in ES.items()}
-
-FR = {'bgcolor': 'couleur_fond', 'bgpic': 'image_fond', 'bye': 'au_revoir', 'clearscreen': 'effacer_écran', 'colormode': 'mode_couleur', 'delay': 'délai', 'exitonclick': 'quitter_au_clic', 'getcanvas': 'obtenir_toile', 'getshapes': 'obtenir_formes', 'listen': 'fenêtre_focus', 'mainloop': 'boucle_principale', 'mode': 'mode', 'no_animation': 'pas_animation', 'numinput': 'entrer_un_nombre', 'onkey': 'sur_touche', 'onkeypress': 'à_pression_touche', 'onkeyrelease': 'au_relâchement_touche', 'onscreenclick': 'au_clic_sur_écran', 'ontimer': 'sur_minuterie', 'register_shape': 'ajouter_une_forme', 'resetscreen': 'réinitialiser_écran', 'save': 'sauvegarder', 'screensize': 'taille_écran', 'setup': 'configuration', 'setworldcoordinates': 'définir_coordonnées_monde', 'textinput': 'entrer_texte', 'title': 'titre', 'tracer': 'taux_dessin', 'turtles': 'tortues', 'update': 'mettre_à_jour', 'window_height': 'hauteur_fenêtre', 'window_width': 'largeur_fenêtre', 'back': 'reculer', 'begin_fill': 'commencer_remplissage', 'begin_poly': 'commencer_polygone', 'circle': 'cercle', 'clear': 'effacer', 'clearstamp': 'effacer_tampon', 'clearstamps': 'effacer_tous_tampons', 'clone': 'cloner', 'color': 'couleur', 'degrees': 'degrés', 'distance': 'distance', 'dot': 'point', 'end_fill': 'terminer_remplissage', 'end_poly': 'terminer_polygone', 'fillcolor': 'couleur_remplissage', 'filling': 'remplissage_en_cours', 'forward': 'avancer', 'get_poly': 'obtenir_dernier_polygone', 'getpen': 'obtenir_stylo', 'getscreen': 'obtenir_écran', 'get_shapepoly': 'obtenir_polygone_forme', 'getturtle': 'obtenir_tortue', 'goto': 'aller_à', 'heading': 'direction', 'hideturtle': 'cacher_tortue', 'home': 'origine', 'isdown': 'est_abaissé', 'isvisible': 'est_visible', 'left': 'gauche', 'onclick': 'au_clic', 'ondrag': 'au_glisser', 'onrelease': 'au_relâchement', 'pen': 'stylo', 'pencolor': 'paramètres_stylo', 'pendown': 'stylo_en_bas', 'pensize': 'taille_stylo', 'penup': 'stylo_en_haut', 'position': 'position', 'radians': 'radians', 'right': 'droite', 'reset': 'réinitialiser_écran', 'resizemode': 'mode_redimensionnement', 'setheading': 'définir_direction', 'setundobuffer': 'définir_tampon_annulation', 'setx': 'définir_x', 'sety': 'définir_y', 'shape': 'forme', 'shapesize': 'taille_forme', 'shapetransform': 'transformation_forme', 'shearfactor': 'facteur_cisaillement', 'showturtle': 'montrer_tortue', 'speed': 'vitesse', 'stamp': 'tampon', 'teleport': 'téléporter', 'tilt': 'faire_pivoter_curseur', 'tiltangle': 'orienter_curseur_vers', 'towards': 'vers', 'undo': 'annuler', 'undobufferentries': 'entrées_tampon_annulation', 'write': 'écrire', 'xcor': 'position_x', 'ycor': 'position_y', 'picname': 'image', 'cmode': 'mode_couleur', 'xdummy': 'ignorer_x', 'ydummy': 'ignorer_y', 'prompt': 'message', 'default': 'par_défaut', 'minval': 'valeur_minimale', 'maxval': 'valeur_maximale', 'filename': 'nom_de_fichier', 'overwrite': 'écraser', 'fun': 'fonction', 'key': 'touche_clavier', 'btn': 'bouton', 'add': 'ajouter_une_forme', 'canvwidth': 'largeur_toile', 'canvheight': 'hauteur_toile', 'bg': 'arrière_plan', 'width': 'largeur', 'height': 'hauteur', 'startx': 'début_x', 'starty': 'début_y', 'llx': 'bas_gauche_x', 'lly': 'bas_gauche_y', 'urx': 'haut_droit_x', 'ury': 'haut_droit_y', 'titlestring': 'titre', 'radius': 'rayon', 'extent': 'étendue', 'steps': 'étapes', 'stampid': 'ID_tampon', 'fullcircle': 'cercle_complet', 'size': 'taille', 'pendict': 'paramètres_stylo', 'angle': 'angle', 'rmode': 'mode_redimensionnement', 'to_angle': 'angle', 'name': 'nom', 'stretch_wid': 'étirer_largeur', 'stretch_len': 'étirer_longueur', 'outline': 'contour', 'shear': 'cisaillement', 'fill_gap': 'écart_remplissage', 'move': 'déplacer', 'align': 'aligner', 'font': 'police', 'black': 'noir', 'blue': 'bleu', 'brown': 'brun', 'orange': 'orange', 'gray': 'gris', 'grey': 'gris', 'green': 'vert', 'purple': 'violet', 'violet': 'violet', 'pink': 'rose', 'yellow': 'jaune', 'white': 'blanc', 'red': 'rouge', 'arrow': 'flèche', 'blank': 'vide', 'classic': 'classique', 'square': 'carré', 'triangle': 'triangle', 'turtle': 'tortue', 'polygon': 'polygone', 'image': 'image', 'compound': 'composé', 'center': 'centre', 'nopic': 'rien'}
-_FR_INVERSE = {v: k for k, v in FR.items()}
-
-DE = {'bgcolor': 'Hintergrundfarbe', 'bgpic': 'Hintergrundbild', 'bye': 'Tschüss', 'clearscreen': 'Bildschirm_löschen', 'colormode': 'Farbmodus', 'delay': 'Verzögerung', 'exitonclick': 'Beenden_bei_Klick', 'getcanvas': 'Leinwand_abrufen', 'getshapes': 'Formen_abrufen', 'listen': 'Fenster_fokussieren', 'mainloop': 'Hauptschleife', 'mode': 'Modus', 'no_animation': 'keine_Animation', 'numinput': 'Zahl_eingeben', 'onkey': 'Bei_Taste', 'onkeypress': 'Bei_Tastendruck', 'onkeyrelease': 'Bei_Tastenfreigabe', 'onscreenclick': 'Bei_Bildschirmklick', 'ontimer': 'Bei_Timer', 'register_shape': 'Form_hinzufügen', 'resetscreen': 'Bildschirm_zurücksetzen', 'save': 'speichern', 'screensize': 'Bildschirmgröße', 'setup': 'Einrichten', 'setworldcoordinates': 'Weltkoordinaten_setzen', 'textinput': 'Text_eingeben', 'title': 'Titel', 'tracer': 'Zeichengeschwindigkeit', 'turtles': 'Schildkröten', 'update': 'Aktualisieren', 'window_height': 'Fensterhöhe', 'window_width': 'Fensterbreite', 'back': 'Rückwärts', 'begin_fill': 'Füllen_beginnen', 'begin_poly': 'Polygon_beginnen', 'circle': 'Kreis', 'clear': 'Löschen', 'clearstamp': 'Stempel_löschen', 'clearstamps': 'Alle_Stempel_löschen', 'clone': 'Klonen', 'color': 'Farbe', 'degrees': 'Grad', 'distance': 'Distanz', 'dot': 'Punkt', 'end_fill': 'Füllen_beenden', 'end_poly': 'Polygon_beenden', 'fillcolor': 'Füllfarbe', 'filling': 'Gerade_füllen', 'forward': 'Vorwärts', 'get_poly': 'Letztes_Polygon_abrufen', 'getpen': 'Stift_abrufen', 'getscreen': 'Bildschirm_abrufen', 'get_shapepoly': 'Formpolygon_abrufen', 'getturtle': 'Schildkröte_abrufen', 'goto': 'Gehe_zu', 'heading': 'Richtung', 'hideturtle': 'Schildkröte_verstecken', 'home': 'Ursprung', 'isdown': 'Ist_unten', 'isvisible': 'Ist_sichtbar', 'left': 'Links', 'onclick': 'Bei_Klick', 'ondrag': 'Beim_Ziehen', 'onrelease': 'Bei_Freigabe', 'pen': 'Stift', 'pencolor': 'Stifteinstellung', 'pendown': 'Stift_nach_unten', 'pensize': 'Stiftdicke', 'penup': 'Stift_nach_oben', 'position': 'Position', 'radians': 'Bogenmaß', 'right': 'Rechts', 'reset': 'Bildschirm_zurücksetzen', 'resizemode': 'Größenmodus', 'setheading': 'Richtung_setzen', 'setundobuffer': 'Rückgangepuffer_setzen', 'setx': 'X_setzen', 'sety': 'Y_setzen', 'shape': 'Form', 'shapesize': 'Formgröße', 'shapetransform': 'Formtransformation', 'shearfactor': 'Scherspannung', 'showturtle': 'Schildkröte_zeigen', 'speed': 'Geschwindigkeit', 'stamp': 'Stempeln', 'teleport': 'Teleportieren', 'tilt': 'Cursor_drehen', 'tiltangle': 'Cursor_drehen_zu', 'towards': 'Zu', 'undo': 'Rückgängig', 'undobufferentries': 'Rückgangepuffer_Einträge', 'write': 'Schreiben', 'xcor': 'X_Position', 'ycor': 'Y_Position', 'picname': 'Bild', 'cmode': 'Farbmodus', 'xdummy': 'X_ignorieren', 'ydummy': 'Y_ignorieren', 'prompt': 'Nachricht', 'default': 'Standard', 'minval': 'Mindestwert', 'maxval': 'Höchstwert', 'filename': 'Dateiname', 'overwrite': 'überschreiben', 'fun': 'Funktion', 'key': 'Tastaturtaste', 'btn': 'Schaltfläche', 'add': 'Form_hinzufügen', 'canvwidth': 'Leinwandbreite', 'canvheight': 'Leinwandhöhe', 'bg': 'Hintergrund', 'width': 'Breite', 'height': 'Höhe', 'startx': 'Start_X', 'starty': 'Start_Y', 'llx': 'Unten_links_X', 'lly': 'Unten_links_Y', 'urx': 'Oben_rechts_X', 'ury': 'Oben_rechts_Y', 'titlestring': 'Titel', 'radius': 'Radius', 'extent': 'Bogenmaß', 'steps': 'Schritte', 'stampid': 'Stempel_ID', 'fullcircle': 'Vollkreis', 'size': 'Größe', 'pendict': 'Stifteinstellungen', 'angle': 'Winkel', 'rmode': 'Größenmodus', 'to_angle': 'Winkel', 'name': 'Name', 'stretch_wid': 'Streckbreite', 'stretch_len': 'Strecklänge', 'outline': 'Umriss', 'shear': 'Schub', 'fill_gap': 'Fülllücke', 'move': 'Bewegen', 'align': 'Ausrichten', 'font': 'Schriftart', 'black': 'Schwarz', 'blue': 'Blau', 'brown': 'Braun', 'orange': 'Orange', 'gray': 'Grau', 'grey': 'Grau', 'green': 'Grün', 'purple': 'Lila', 'violet': 'Violett', 'pink': 'Rosa', 'yellow': 'Gelb', 'white': 'Weiß', 'red': 'Rot', 'arrow': 'Pfeil', 'blank': 'Leer', 'classic': 'Klassisch', 'square': 'Quadrat', 'triangle': 'Dreieck', 'turtle': 'Schildkröte', 'polygon': 'Polygon', 'image': 'Bild', 'compound': 'Verbund', 'center': 'Zentrum', 'nopic': 'Nichts'}
-_DE_INVERSE = {v: k for k, v in DE.items()}
-
-
-_TG_CLASSES = ('ScrolledCanvas', 'TurtleScreen', 'Screen',
-               'RawTurtle', 'Turtle', 'RawPen', 'Pen', 'Shape', 'Vec2D')
-_TG_SCREEN_FUNCTIONS = ('addshape', 'bgcolor', 'bgpic', 'bye',
+_tg_classes = ['ScrolledCanvas', 'TurtleScreen', 'Screen',
+               'RawTurtle', 'Turtle', 'RawPen', 'Pen', 'Shape', 'Vec2D']
+_tg_screen_functions = ['addshape', 'bgcolor', 'bgpic', 'bye',
         'clearscreen', 'colormode', 'delay', 'exitonclick', 'getcanvas',
         'getshapes', 'listen', 'mainloop', 'mode', 'no_animation', 'numinput',
         'onkey', 'onkeypress', 'onkeyrelease', 'onscreenclick', 'ontimer',
         'register_shape', 'resetscreen', 'screensize', 'save', 'setup',
         'setworldcoordinates', 'textinput', 'title', 'tracer', 'turtles',
-        'update', 'window_height', 'window_width')
-_TG_TURTLE_FUNCTIONS = ('back', 'backward', 'begin_fill', 'begin_poly', 'bk',
+        'update', 'window_height', 'window_width']
+_tg_turtle_functions = ['back', 'backward', 'begin_fill', 'begin_poly', 'bk',
         'circle', 'clear', 'clearstamp', 'clearstamps', 'clone', 'color',
         'degrees', 'distance', 'dot', 'down', 'end_fill', 'end_poly', 'fd',
-        'fillcolor', 'filling', 'forward', 'get_poly', 'getpen',
+        'fillcolor', 'fill', 'filling', 'forward', 'get_poly', 'getpen',
         'getscreen', 'get_shapepoly', 'getturtle', 'goto', 'heading',
         'hideturtle', 'home', 'ht', 'isdown', 'isvisible', 'left', 'lt',
         'onclick', 'ondrag', 'onrelease', 'pd', 'pen', 'pencolor', 'pendown',
-        'pensize', 'penup', 'pos', 'position', 'pu', 'radians', 'right',
+        'pensize', 'penup', 'poly', 'pos', 'position', 'pu', 'radians', 'right',
         'reset', 'resizemode', 'rt', 'seth', 'setheading', 'setpos',
         'setposition', 'setundobuffer', 'setx', 'sety', 'shape', 'shapesize',
         'shapetransform', 'shearfactor', 'showturtle', 'speed', 'st', 'stamp',
         'teleport', 'tilt', 'tiltangle', 'towards', 'turtlesize', 'undo',
         'undobufferentries', 'up', 'width',
-        'write', 'xcor', 'ycor')
-_TG_UTILITIES = ('write_docstringdict', 'done')
+        'write', 'xcor', 'ycor']
+_tg_utilities = ['write_docstringdict', 'done']
 
-__all__ = (_TG_CLASSES + _TG_SCREEN_FUNCTIONS + _TG_TURTLE_FUNCTIONS +
-           _TG_UTILITIES + ('Terminator',))
+__all__ = (_tg_classes + _tg_screen_functions + _tg_turtle_functions +
+           _tg_utilities + ['Terminator'])
 
-_ALIAS_LIST = ('addshape', 'backward', 'bk', 'down', 'fd', 'ht', 'lt', 'pd', 'pos',
+_alias_list = ['addshape', 'backward', 'bk', 'fd', 'ht', 'lt', 'pd', 'pos',
                'pu', 'rt', 'seth', 'setpos', 'setposition', 'st',
-               'turtlesize', 'up', 'width')
+               'turtlesize', 'up', 'width']
 
 _CFG = {"width" : 0.5,               # Screen
         "height" : 0.75,
@@ -3967,16 +3955,16 @@ def write_docstringdict(filename="turtle_docstringdict"):
     """
     docsdict = {}
 
-    for methodname in _TG_SCREEN_FUNCTIONS:
+    for methodname in _tg_screen_functions:
         key = "_Screen."+methodname
         docsdict[key] = eval(key).__doc__
-    for methodname in _TG_TURTLE_FUNCTIONS:
+    for methodname in _tg_turtle_functions:
         key = "Turtle."+methodname
         docsdict[key] = eval(key).__doc__
 
     with open("%s.py" % filename,"w") as f:
         keys = sorted(x for x in docsdict
-                      if x.split('.')[1] not in _ALIAS_LIST)
+                      if x.split('.')[1] not in _alias_list)
         f.write('docsdict = {\n\n')
         for key in keys[:-1]:
             f.write('%s :\n' % repr(key))
@@ -4105,177 +4093,18 @@ def _make_global_funcs(functions, cls, obj, init, docrevise):
             continue
         defstr = __func_body.format(obj=obj, init=init, name=methodname,
                                     paramslist=pl1, argslist=pl2)
-        #print(defstr + '\n\n\n\n\n') # DEBUG
         exec(defstr, globals())
         globals()[methodname].__doc__ = docrevise(method.__doc__)
 
-
-
-def getmethparlist_translated(ob, translations):
-    """Get strings describing the arguments for the given object
-
-    Returns a pair of strings representing function parameter lists
-    including parenthesis.  The first string is suitable for use in
-    function definition and the second is suitable for use in function
-    call.  The "self" parameter is not included.
-    """
-    orig_sig = inspect.signature(ob)
-    # bit of a hack for methods - turn it into a function
-    # but we drop the "self" param.
-    # Try and build one for Python defined functions
-    english_func_sig = orig_sig.replace(
-        parameters=list(orig_sig.parameters.values())[1:],
-    )
-
-    # Translate the parameter names from English to non-English:
-    translated_parameters = []
-    for param in english_func_sig.parameters.values():
-        translated_parameters.append(inspect.Parameter(translations.get(param.name, param.name), param.kind, default=translations.get(param.default, param.default), annotation=param.annotation))
-    nonenglish_func_sig = english_func_sig.replace(parameters=translated_parameters)
-
-
-
-    call_args = []
-    english_param_values = tuple(english_func_sig.parameters.values())
-    for i, param in enumerate(nonenglish_func_sig.parameters.values()):
-        match param.kind:
-            case (
-                inspect.Parameter.POSITIONAL_ONLY
-                | inspect.Parameter.POSITIONAL_OR_KEYWORD
-            ):
-                call_args.append(param.name)
-            case inspect.Parameter.VAR_POSITIONAL:
-                call_args.append(f'*{param.name}')
-            case inspect.Parameter.KEYWORD_ONLY:
-                call_args.append(f'{english_param_values[i].name}={param.name}')
-            case inspect.Parameter.VAR_KEYWORD:
-                call_args.append(f'**{param.name}')
-            case _:
-                raise RuntimeError('Unsupported parameter kind', param.kind)
-    call_text = f'({', '.join(call_args)})'
-
-    return str(nonenglish_func_sig), call_text
-
-__translated_func_body = """\
-def {nonenglish_name}{paramslist}:
-    if {obj} is None:
-        if not TurtleScreen._RUNNING:
-            TurtleScreen._RUNNING = True
-            raise Terminator
-        {obj} = {init}
-    try:
-{translated_arg_assignment_code}
-        result = {english_name}{argslist}
-        return {translation_mapping_variable}.get(result, result)
-    except TK.TclError:
-        if not TurtleScreen._RUNNING:
-            TurtleScreen._RUNNING = True
-            raise Terminator
-        raise
-"""
-
-def _make_translated_global_funcs(functions, cls, obj, init, docrevise, translation_mapping, translation_mapping_variable):
-    """Creates global functions from the Turtle/Pen and Screen methods.
-    
-    functions is a sequence of strings of function names (currently either _TG_SCREEN_FUNCTIONS or _TG_TURTLE_FUNCTIONS) (Actually, these are method names of the Screen and Turtle types. Whatever.)
-    
-    cls is the class whose methods should be made into global functions (currently either _Screen or Turtle)
-    
-    obj is a string of the name of singleton object of cls (currently either 'Turtle._screen' or 'Turtle._pen')
-    
-    init is a string of the function call that creates obj (currently either 'Screen()' or 'Turtle()')
-
-    docrevise is a function that modifies the docstrings (currently either _screen_docrevise or _turtle_docrevise)
-
-    translation_mapping is a dictionary mapping English names to a non-English names (such as ES).
-
-    translation_mapping_variable is a string of the translation_mapping variable name (such as 'ES').
-    """
-    _ARG_ASSIGN_INDENT = ' ' * 8
-
-    for english_method_name in functions:
-        method = getattr(cls, english_method_name)
-
-        if english_method_name in _ALIAS_LIST:
-            # We skip the alias functions like `backward` and `bk`, since translations don't have aliases:
-            continue
-
-        english_pl1, english_pl2 = getmethparlist(method)
-        nonenglish_pl1, nonenglish_pl2 = getmethparlist_translated(method, translation_mapping)
-
-        #print('RETURNED FROM GETMETHPARLIST: ' + english_method_name, repr(nonenglish_pl1), repr(nonenglish_pl2), sep='\n') # DEBUG
-        
-
-        translated_arg_assignment_code = []  # A string of Python code that reassigns the parameter names to the English names of the original function.
-        
-        # [1:-1] cuts off open and close parens in pl2 and translated_pl2:
-        english_pl2_parts    = [x.strip() for x in english_pl2[1:-1].split(',')]
-        nonenglish_pl2_parts = [x.strip() for x in nonenglish_pl2[1:-1].split(',')]
-        assert len(english_pl2_parts) == len(nonenglish_pl2_parts)
-
-        for i, english_pl2_part in enumerate(english_pl2_parts):
-            nonenglish_pl2_part = nonenglish_pl2_parts[i]
-
-            #print(f'DEBUG {english_pl2_part=}')
-            #print(f'DEBUG {nonenglish_pl2_part=}')
-            
-            if english_pl2_part.startswith('**'):
-                # The parameter is everything after the **:
-                nonenglish_param = nonenglish_pl2_part[2:]
-
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = {_' + translation_mapping_variable + '_INVERSE.get(k, k): _' + translation_mapping_variable + '_INVERSE.get(v, v) for k, v in ' + nonenglish_param + '.items()}')
-            elif english_pl2_part.startswith('*'):
-                # The parameter is everything after the *:
-                nonenglish_param = nonenglish_pl2_part[1:]
-                
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = [_' + translation_mapping_variable + '_INVERSE.get(arg, arg) for arg in ' + nonenglish_param + ']')
-            elif '=' in english_pl2_part:
-                # The parameter is everything after the = in *_pl2_part:
-                nonenglish_param = nonenglish_pl2_part[nonenglish_pl2_part.find('=') + 1:]
-
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = _' + translation_mapping_variable + '_INVERSE.get(' + nonenglish_param + ', ' + nonenglish_param + ')')
-            elif english_pl2_part == '':
-                # Methods with zero parameters will have an english_pl2_parts of [''], so just skip it.
-                pass
-            else:
-                # The parameter is the same as *_pl2_part:
-                nonenglish_param = nonenglish_pl2_part
-
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = _' + translation_mapping_variable + '_INVERSE.get(' + nonenglish_param + ', ' + nonenglish_param + ')')
-            
-
-        assert english_method_name in translation_mapping, 'The ' + english_method_name + ' method is missing a translation for the ' + translation_mapping_variable + ' language.'
-
-        translated_arg_assignment_code = '\n'.join(translated_arg_assignment_code)
-        nonenglish_method_name = translation_mapping[english_method_name]
-
-        defstr = __translated_func_body.format(obj=obj, init=init, 
-            nonenglish_name=nonenglish_method_name, english_name=english_method_name,
-            paramslist=nonenglish_pl1, argslist=nonenglish_pl2,
-            translated_arg_assignment_code=translated_arg_assignment_code,
-            translation_mapping_variable=translation_mapping_variable)
-        
-        #print(defstr + '\n\n\n\n\n') # DEBUG
-
-        exec(defstr, globals())
-        globals()[nonenglish_method_name].__doc__ = docrevise(method.__doc__) # TODO - modify docstring here later once we have those translated
-        
-
-_make_global_funcs(_TG_SCREEN_FUNCTIONS, _Screen,
+_make_global_funcs(_tg_screen_functions, _Screen,
                    'Turtle._screen', 'Screen()', _screen_docrevise)
-_make_global_funcs(_TG_TURTLE_FUNCTIONS, Turtle,
+_make_global_funcs(_tg_turtle_functions, Turtle,
                    'Turtle._pen', 'Turtle()', _turtle_docrevise)
 
-for noneng_map, noneng_name in ((ES, 'ES'), (FR, 'FR'), (DE, 'DE')):
-    _make_translated_global_funcs(_TG_SCREEN_FUNCTIONS, _Screen,
-                       'Turtle._screen', 'Screen()', _screen_docrevise, noneng_map, noneng_name)
-    _make_translated_global_funcs(_TG_TURTLE_FUNCTIONS, Turtle,
-                       'Turtle._pen', 'Turtle()', _turtle_docrevise, noneng_map, noneng_name)
 
 done = mainloop
 
-
-if False and __name__ == "__main__":
+if __name__ == "__main__":
     def switchpen():
         if isdown():
             pu()
