@@ -148,12 +148,20 @@ _TG_TURTLE_FUNCTIONS = ('back', 'backward', 'begin_fill', 'begin_poly', 'bk',
         'write', 'xcor', 'ycor')
 _TG_UTILITIES = ('write_docstringdict', 'done')
 
-__all__ = (_TG_CLASSES + _TG_SCREEN_FUNCTIONS + _TG_TURTLE_FUNCTIONS +
-           _TG_UTILITIES + ('Terminator',))
-
 _ALIAS_LIST = ('addshape', 'backward', 'bk', 'down', 'fd', 'ht', 'lt', 'pd', 'pos',
                'pu', 'rt', 'seth', 'setpos', 'setposition', 'st',
                'turtlesize', 'up', 'width')
+
+# TODO: Currently we don't translate the classes and methods.
+exported_nonenglish = []
+for english_name in (_TG_SCREEN_FUNCTIONS + _TG_TURTLE_FUNCTIONS):
+    if english_name in _ALIAS_LIST:
+        continue  # skip aliases
+    for translation_mapping in (ES, FR, DE):
+        exported_nonenglish.append(translation_mapping[english_name])
+    
+__all__ = (_TG_CLASSES + _TG_SCREEN_FUNCTIONS + _TG_TURTLE_FUNCTIONS +
+           _TG_UTILITIES + ('Terminator',) + tuple(exported_nonenglish))
 
 _CFG = {"width" : 0.5,               # Screen
         "height" : 0.75,
@@ -4110,6 +4118,11 @@ def _make_global_funcs(functions, cls, obj, init, docrevise):
         globals()[methodname].__doc__ = docrevise(method.__doc__)
 
 
+_make_global_funcs(_TG_SCREEN_FUNCTIONS, _Screen,
+                   'Turtle._screen', 'Screen()', _screen_docrevise)
+_make_global_funcs(_TG_TURTLE_FUNCTIONS, Turtle,
+                   'Turtle._pen', 'Turtle()', _turtle_docrevise)
+
 
 def getmethparlist_translated(ob, translations):
     """Get strings describing the arguments for the given object
@@ -4194,6 +4207,7 @@ def _make_translated_global_funcs(functions, cls, obj, init, docrevise, translat
     _ARG_ASSIGN_INDENT = ' ' * 8
 
     for english_method_name in functions:
+        #if english_method_name == 'tracer': breakpoint() # DEBUG
         method = getattr(cls, english_method_name)
 
         if english_method_name in _ALIAS_LIST:
@@ -4259,12 +4273,8 @@ def _make_translated_global_funcs(functions, cls, obj, init, docrevise, translat
 
         exec(defstr, globals())
         globals()[nonenglish_method_name].__doc__ = docrevise(method.__doc__) # TODO - modify docstring here later once we have those translated
-        
 
-_make_global_funcs(_TG_SCREEN_FUNCTIONS, _Screen,
-                   'Turtle._screen', 'Screen()', _screen_docrevise)
-_make_global_funcs(_TG_TURTLE_FUNCTIONS, Turtle,
-                   'Turtle._pen', 'Turtle()', _turtle_docrevise)
+        #print(f'DEFINED {nonenglish_method_name}{nonenglish_pl1}')  # DEBUG
 
 for noneng_map, noneng_name in ((ES, 'ES'), (FR, 'FR'), (DE, 'DE')):
     _make_translated_global_funcs(_TG_SCREEN_FUNCTIONS, _Screen,
