@@ -4031,6 +4031,13 @@ def getmethparlist(ob):
     including parenthesis.  The first string is suitable for use in
     function definition and the second is suitable for use in function
     call.  The "self" parameter is not included.
+
+    For example:
+    >>> getmethparlist(Turtle.forward)
+    ('(distance)', '(distance)')
+
+    >>> getmethparlist(Turtle.pen)
+    ('(pen=None, **pendict)', '(pen, **pendict)')
     """
     orig_sig = inspect.signature(ob)
     # bit of a hack for methods - turn it into a function
@@ -4113,7 +4120,6 @@ def _make_global_funcs(functions, cls, obj, init, docrevise):
             continue
         defstr = __func_body.format(obj=obj, init=init, name=methodname,
                                     paramslist=pl1, argslist=pl2)
-        #print(defstr + '\n\n\n\n\n') # DEBUG
         exec(defstr, globals())
         globals()[methodname].__doc__ = docrevise(method.__doc__)
 
@@ -4125,12 +4131,19 @@ _make_global_funcs(_TG_TURTLE_FUNCTIONS, Turtle,
 
 
 def getmethparlist_translated(ob, translations):
-    """Get strings describing the arguments for the given object
+    """Get non-English strings describing the arguments for the given object
 
     Returns a pair of strings representing function parameter lists
     including parenthesis.  The first string is suitable for use in
     function definition and the second is suitable for use in function
     call.  The "self" parameter is not included.
+
+    For example:
+    >>> getmethparlist_translated(Turtle.forward, ES)
+    ('(distancia)', '(distancia)')
+
+    >>> getmethparlist_translated(Turtle.pen, ES)
+    ('(pluma=None, **configuraciones_pluma)', '(pluma, **configuraciones_pluma)')
     """
     orig_sig = inspect.signature(ob)
     # bit of a hack for methods - turn it into a function
@@ -4187,6 +4200,45 @@ def {nonenglish_name}{paramslist}:
         raise
 """
 
+def _get_translated_arg_assignment_code(english_pl2, nonenglish_pl2, translation_mapping_variable, indent=' ' * 8):
+    """Returns a string of Python code that reassigns the parameter names to the English names of the original function."""
+    # TODO: Rename the *_pl2 variables. I copied that naming convention from the original _make_global_funcs() function.
+    translated_arg_assignment_code = []  # A string of Python code that reassigns the parameter names to the English names of the original function.
+    
+    # [1:-1] cuts off open and close parens in pl2 and translated_pl2:
+    english_pl2_parts    = [x.strip() for x in english_pl2[1:-1].split(',')]
+    nonenglish_pl2_parts = [x.strip() for x in nonenglish_pl2[1:-1].split(',')]
+    assert len(english_pl2_parts) == len(nonenglish_pl2_parts)
+
+    for i, english_pl2_part in enumerate(english_pl2_parts):
+        nonenglish_pl2_part = nonenglish_pl2_parts[i]
+        
+        if english_pl2_part.startswith('**'):
+            # The parameter is everything after the **:
+            nonenglish_param = nonenglish_pl2_part[2:]
+
+            translated_arg_assignment_code.append(indent + nonenglish_param + ' = {_' + translation_mapping_variable + '_INVERSE.get(k, k): _' + translation_mapping_variable + '_INVERSE.get(v, v) for k, v in ' + nonenglish_param + '.items()}')
+        elif english_pl2_part.startswith('*'):
+            # The parameter is everything after the *:
+            nonenglish_param = nonenglish_pl2_part[1:]
+            
+            translated_arg_assignment_code.append(indent + nonenglish_param + ' = [_' + translation_mapping_variable + '_INVERSE.get(arg, arg) for arg in ' + nonenglish_param + ']')
+        elif '=' in english_pl2_part:
+            # The parameter is everything after the = in *_pl2_part:
+            nonenglish_param = nonenglish_pl2_part[nonenglish_pl2_part.find('=') + 1:]
+
+            translated_arg_assignment_code.append(indent + nonenglish_param + ' = _' + translation_mapping_variable + '_INVERSE.get(' + nonenglish_param + ', ' + nonenglish_param + ')')
+        elif english_pl2_part == '':
+            # Methods with zero parameters will have an english_pl2_parts of [''], so just skip it.
+            pass
+        else:
+            # The parameter is the same as *_pl2_part:
+            nonenglish_param = nonenglish_pl2_part
+
+            translated_arg_assignment_code.append(indent + nonenglish_param + ' = _' + translation_mapping_variable + '_INVERSE.get(' + nonenglish_param + ', ' + nonenglish_param + ')')
+    return '\n'.join(translated_arg_assignment_code)
+
+
 def _make_translated_global_funcs(functions, cls, obj, init, docrevise, translation_mapping, translation_mapping_variable):
     """Creates global functions from the Turtle/Pen and Screen methods.
     
@@ -4200,67 +4252,25 @@ def _make_translated_global_funcs(functions, cls, obj, init, docrevise, translat
 
     docrevise is a function that modifies the docstrings (currently either _screen_docrevise or _turtle_docrevise)
 
-    translation_mapping is a dictionary mapping English names to a non-English names (such as ES).
+    translation_mapping is a dictionary mapping English names to a non-English names (such as the ES global constant).
 
     translation_mapping_variable is a string of the translation_mapping variable name (such as 'ES').
     """
-    _ARG_ASSIGN_INDENT = ' ' * 8
 
     for english_method_name in functions:
-        #if english_method_name == 'tracer': breakpoint() # DEBUG
         method = getattr(cls, english_method_name)
 
         if english_method_name in _ALIAS_LIST:
             # We skip the alias functions like `backward` and `bk`, since translations don't have aliases:
             continue
 
+        assert english_method_name in translation_mapping, 'The ' + english_method_name + ' method is missing a translation for the ' + translation_mapping_variable + ' language.'
+        
         english_pl1, english_pl2 = getmethparlist(method)
         nonenglish_pl1, nonenglish_pl2 = getmethparlist_translated(method, translation_mapping)
-
-        #print('RETURNED FROM GETMETHPARLIST: ' + english_method_name, repr(nonenglish_pl1), repr(nonenglish_pl2), sep='\n') # DEBUG
         
+        translated_arg_assignment_code = _get_translated_arg_assignment_code(english_pl2, nonenglish_pl2, translation_mapping_variable)
 
-        translated_arg_assignment_code = []  # A string of Python code that reassigns the parameter names to the English names of the original function.
-        
-        # [1:-1] cuts off open and close parens in pl2 and translated_pl2:
-        english_pl2_parts    = [x.strip() for x in english_pl2[1:-1].split(',')]
-        nonenglish_pl2_parts = [x.strip() for x in nonenglish_pl2[1:-1].split(',')]
-        assert len(english_pl2_parts) == len(nonenglish_pl2_parts)
-
-        for i, english_pl2_part in enumerate(english_pl2_parts):
-            nonenglish_pl2_part = nonenglish_pl2_parts[i]
-
-            #print(f'DEBUG {english_pl2_part=}')
-            #print(f'DEBUG {nonenglish_pl2_part=}')
-            
-            if english_pl2_part.startswith('**'):
-                # The parameter is everything after the **:
-                nonenglish_param = nonenglish_pl2_part[2:]
-
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = {_' + translation_mapping_variable + '_INVERSE.get(k, k): _' + translation_mapping_variable + '_INVERSE.get(v, v) for k, v in ' + nonenglish_param + '.items()}')
-            elif english_pl2_part.startswith('*'):
-                # The parameter is everything after the *:
-                nonenglish_param = nonenglish_pl2_part[1:]
-                
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = [_' + translation_mapping_variable + '_INVERSE.get(arg, arg) for arg in ' + nonenglish_param + ']')
-            elif '=' in english_pl2_part:
-                # The parameter is everything after the = in *_pl2_part:
-                nonenglish_param = nonenglish_pl2_part[nonenglish_pl2_part.find('=') + 1:]
-
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = _' + translation_mapping_variable + '_INVERSE.get(' + nonenglish_param + ', ' + nonenglish_param + ')')
-            elif english_pl2_part == '':
-                # Methods with zero parameters will have an english_pl2_parts of [''], so just skip it.
-                pass
-            else:
-                # The parameter is the same as *_pl2_part:
-                nonenglish_param = nonenglish_pl2_part
-
-                translated_arg_assignment_code.append(_ARG_ASSIGN_INDENT + nonenglish_param + ' = _' + translation_mapping_variable + '_INVERSE.get(' + nonenglish_param + ', ' + nonenglish_param + ')')
-            
-
-        assert english_method_name in translation_mapping, 'The ' + english_method_name + ' method is missing a translation for the ' + translation_mapping_variable + ' language.'
-
-        translated_arg_assignment_code = '\n'.join(translated_arg_assignment_code)
         nonenglish_method_name = translation_mapping[english_method_name]
 
         defstr = __translated_func_body.format(obj=obj, init=init, 
@@ -4269,23 +4279,58 @@ def _make_translated_global_funcs(functions, cls, obj, init, docrevise, translat
             translated_arg_assignment_code=translated_arg_assignment_code,
             translation_mapping_variable=translation_mapping_variable)
         
-        #print(defstr + '\n\n\n\n\n') # DEBUG
-
         exec(defstr, globals())
         globals()[nonenglish_method_name].__doc__ = docrevise(method.__doc__) # TODO - modify docstring here later once we have those translated
 
-        #print(f'DEFINED {nonenglish_method_name}{nonenglish_pl1}')  # DEBUG
 
-for noneng_map, noneng_name in ((ES, 'ES'), (FR, 'FR'), (DE, 'DE')):
+_ADDED_TRANSLATED_METHOD_TEMPLATE = '''
+def _added_translated_method{nonenglish_parameters}:
+    """{docstring}"""
+{translated_arg_assignment_code}
+    return self.{english_method_name}{arguments}
+{class_name}.{nonenglish_method_name} = _added_translated_method
+'''
+
+for noneng_map, noneng_map_var in ((ES, 'ES'), (FR, 'FR'), (DE, 'DE')):
     _make_translated_global_funcs(_TG_SCREEN_FUNCTIONS, _Screen,
-                       'Turtle._screen', 'Screen()', _screen_docrevise, noneng_map, noneng_name)
+                       'Turtle._screen', 'Screen()', _screen_docrevise, noneng_map, noneng_map_var)
     _make_translated_global_funcs(_TG_TURTLE_FUNCTIONS, Turtle,
-                       'Turtle._pen', 'Turtle()', _turtle_docrevise, noneng_map, noneng_name)
+                       'Turtle._pen', 'Turtle()', _turtle_docrevise, noneng_map, noneng_map_var)
 
+    for eng_name, noneng_name in noneng_map.items():
+        # NOTE: It's fine if there's overlapping method names in Turtle and Screen, this translation code will still work.
+        classes_with_method = []
+        if eng_name in _TG_TURTLE_FUNCTIONS:
+            classes_with_method.append(Turtle)
+        if eng_name in _TG_SCREEN_FUNCTIONS:
+            classes_with_method.append(_Screen)
+
+        for class_of_method in classes_with_method:
+            method = getattr(class_of_method, eng_name)
+            english_pl1, english_pl2 = getmethparlist(method)
+            nonenglish_pl1, nonenglish_pl2 = getmethparlist_translated(method, noneng_map)
+            translated_arg_assignment_code = _get_translated_arg_assignment_code(english_pl2, nonenglish_pl2, noneng_map_var, ' ' * 4)
+
+            # Insert self as the first parameter in the non-English method signature:
+            nonenglish_pl1 = '(self, ' + nonenglish_pl1[1:]
+
+            # TODO - modify docstring here later once we have those translated
+            defstr = _ADDED_TRANSLATED_METHOD_TEMPLATE.format(nonenglish_parameters=nonenglish_pl1, 
+                docstring=method.__doc__, translated_arg_assignment_code=translated_arg_assignment_code, 
+                english_method_name=eng_name, arguments=nonenglish_pl2, class_name='Turtle', nonenglish_method_name=noneng_name)
+            exec(defstr, globals())
+    
+    if '_added_translated_method' in globals():
+        # You can ignore type checker warnings about this line because
+        # _added_translated_method is dynamically created in the loop above.
+        del _added_translated_method  # We don't need this function anymore, so let's delete it to avoid confusion.
+
+# You can ignore type checker warnings about mainloop. It's a method of
+# TurtleScreenBase but made into a global function by _make_global_funcs().
 done = mainloop
 
 
-if False and __name__ == "__main__":
+if __name__ == "__main__":
     def switchpen():
         if isdown():
             pu()
