@@ -1,0 +1,8 @@
+dist
+_build
+*.pyc
+__pycache__
+tortuga.egg-info
+.DS_Store
+delme*
+Pipfile

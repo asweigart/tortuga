@@ -113,23 +113,211 @@ from tkinter import simpledialog
 
 
 
-ES = {'bgcolor': 'color_fondo', 'bgpic': 'imagen_fondo', 'bye': 'adiós', 'clearscreen': 'borrar_pantalla', 'colormode': 'modo_color', 'delay': 'retraso', 'exitonclick': 'salir_al_hacer_clic', 'getcanvas': 'obtener_lienzo', 'getshapes': 'obtener_formas', 'listen': 'enfocar_ventana', 'mainloop': 'bucle_principal', 'mode': 'modo', 'no_animation': 'sin_animación', 'numinput': 'ingresar_número', 'onkey': 'al_presionar_tecla', 'onkeypress': 'al_pulsar_tecla', 'onkeyrelease': 'al_soltar_tecla', 'onscreenclick': 'al_hacer_clic_en_pantalla', 'ontimer': 'en_temporizador', 'register_shape': 'agregar_forma', 'resetscreen': 'reiniciar_pantalla', 'save': 'ahorrar', 'screensize': 'tamaño_pantalla', 'setup': 'configurar', 'setworldcoordinates': 'establecer_coordenadas_mundo', 'textinput': 'ingresar_texto', 'title': 'título', 'tracer': 'tasa_dibujo', 'turtles': 'tortugas', 'update': 'actualizar', 'window_height': 'altura_la_ventana', 'window_width': 'ancho_la_ventana', 'back': 'atrás', 'begin_fill': 'comenzar_a_rellenar', 'begin_poly': 'comenzar_polígono', 'circle': 'círculo', 'clear': 'borrar', 'clearstamp': 'borrar_sello', 'clearstamps': 'borrar_todos_sellos', 'clone': 'clonar', 'color': 'color', 'degrees': 'grados', 'distance': 'distancia', 'dot': 'punto', 'end_fill': 'terminar_relleno', 'end_poly': 'terminar_polígono', 'fillcolor': 'color_relleno', 'filling': 'rellenando_ahora', 'forward': 'adelante', 'get_poly': 'obtener_último_polígono', 'getpen': 'obtener_pluma', 'getscreen': 'obtener_pantalla', 'get_shapepoly': 'obtener_polígono_forma', 'getturtle': 'obtener_tortuga', 'goto': 'ir_a', 'heading': 'dirección', 'hideturtle': 'ocultar_tortuga', 'home': 'origen', 'isdown': 'está_abajo', 'isvisible': 'es_visible', 'left': 'izquierda', 'onclick': 'al_hacer_clic', 'ondrag': 'al_arrastrar', 'onrelease': 'al_soltar', 'pen': 'pluma', 'pencolor': 'configuración_pluma', 'pendown': 'pluma_abajo', 'pensize': 'tamaño_pluma', 'penup': 'pluma_arriba', 'position': 'posición', 'radians': 'radianes', 'right': 'derecha', 'reset': 'reiniciar_pantalla', 'resizemode': 'modo_cambio_tamaño', 'setheading': 'establecer_dirección', 'setundobuffer': 'establecer_búfer_deshacer', 'setx': 'establecer_x', 'sety': 'establecer_y', 'shape': 'forma', 'shapesize': 'tamaño_forma', 'shapetransform': 'transformación_forma', 'shearfactor': 'factor_cizalladura', 'showturtle': 'mostrar_tortuga', 'speed': 'velocidad', 'stamp': 'sello', 'teleport': 'teletransportar', 'tilt': 'rotar_cursor', 'tiltangle': 'rotar_cursor_hacia', 'towards': 'hacia', 'undo': 'deshacer', 'undobufferentries': 'entradas_búfer_deshacer', 'write': 'escribir', 'xcor': 'posición_x', 'ycor': 'posición_y', 'picname': 'imagen', 'cmode': 'modo_color', 'xdummy': 'ignorar_x', 'ydummy': 'ignorar_y', 'prompt': 'mensaje', 'default': 'predeterminado', 'minval': 'valor_mínimo', 'maxval': 'valor_máximo', 'filename': 'nombre_de_archivo', 'overwrite': 'sobrescribir', 'fun': 'función', 'key': 'tecla_teclado', 'btn': 'botón', 'add': 'agregar_forma', 'canvwidth': 'ancho_lienzo', 'canvheight': 'altura_lienzo', 'bg': 'fondo', 'width': 'ancho', 'height': 'alto', 'startx': 'inicio_x', 'starty': 'inicio_y', 'llx': 'x_inferior_izquierda', 'lly': 'y_inferior_izquierda', 'urx': 'x_superior_derecha', 'ury': 'y_superior_derecha', 'titlestring': 'título', 'radius': 'radio', 'extent': 'extensión', 'steps': 'pasos', 'stampid': 'ID_sello', 'fullcircle': 'círculo_completo', 'size': 'tamaño', 'pendict': 'configuraciones_pluma', 'angle': 'ángulo', 'rmode': 'modo_cambio_tamaño', 'to_angle': 'ángulo', 'name': 'nombre', 'stretch_wid': 'ancho_estiramiento', 'stretch_len': 'longitud_estiramiento', 'outline': 'contorno', 'shear': 'cizalladura', 'fill_gap': 'hueco_relleno', 'move': 'mover', 'align': 'alinear', 'font': 'fuente', 'black': 'negro', 'blue': 'azul', 'brown': 'marrón', 'orange': 'naranja', 'gray': 'gris', 'grey': 'gris', 'green': 'verde', 'purple': 'morado', 'violet': 'violeta', 'pink': 'rosa', 'yellow': 'amarillo', 'white': 'blanco', 'red': 'rojo', 'magenta': 'magenta', 'cyan': 'cian', 'arrow': 'flecha', 'blank': 'vacío', 'classic': 'clásico', 'square': 'cuadrado', 'triangle': 'triángulo', 'turtle': 'tortuga', 'polygon': 'polígono', 'image': 'imagen', 'compound': 'compuesto', 'center': 'centro', 'nopic': 'nada'}
+# This string value is copy/pasted from a spreadsheet for ease of updating:
+_NUM_LANGUAGES = 7  # Update this as new languages are added to the spreadsheet.
+_TRANSLATION_SPREADSHEET = '''\
+bgcolor color_fondo color_fondo couleur_fond    couleur_fond    Hintergrundfarbe    Hintergrundfarbe
+bgpic   imagen_fondo    imagen_fondo    image_fond  image_fond  Hintergrundbild Hintergrundbild
+bye adiós   adios   au_revoir   au_revoir   Tschüss Tschuess
+clearscreen borrar_pantalla borrar_pantalla effacer_écran   effacer_ecran   Bildschirm_löschen  Bildschirm_loeschen
+colormode   modo_color  modo_color  mode_couleur    mode_couleur    Farbmodus   Farbmodus
+delay   retraso retraso délai   delai   Verzögerung Verzoegerung
+exitonclick salir_al_hacer_clic salir_al_hacer_clic quitter_au_clic quitter_au_clic Beenden_bei_Klick   Beenden_bei_Klick
+getcanvas   obtener_lienzo  obtener_lienzo  obtenir_toile   obtenir_toile   Leinwand_abrufen    Leinwand_abrufen
+getshapes   obtener_formas  obtener_formas  obtenir_formes  obtenir_formes  Formen_abrufen  Formen_abrufen
+listen  enfocar_ventana enfocar_ventana fenêtre_focus   fenetre_focus   Fenster_fokussieren Fenster_fokussieren
+mainloop    bucle_principal bucle_principal boucle_principale   boucle_principale   Hauptschleife   Hauptschleife
+mode    modo    modo    mode    mode    Modus   Modus
+no_animation    sin_animación   sin_animacion   pas_animation   pas_animation   keine_Animation keine_Animation
+numinput    ingresar_número ingresar_numero entrer_un_nombre    entrer_un_nombre    Zahl_eingeben   Zahl_eingeben
+onkey   al_presionar_tecla  al_presionar_tecla  sur_touche  sur_touche  Bei_Taste   Bei_Taste
+onkeypress  al_pulsar_tecla al_pulsar_tecla à_pression_touche   a_pression_touche   Bei_Tastendruck Bei_Tastendruck
+onkeyrelease    al_soltar_tecla al_soltar_tecla au_relâchement_touche   au_relachement_touche   Bei_Tastenfreigabe  Bei_Tastenfreigabe
+onscreenclick   al_hacer_clic_en_pantalla   al_hacer_clic_en_pantalla   au_clic_sur_écran   au_clic_sur_ecran   Bei_Bildschirmklick Bei_Bildschirmklick
+ontimer en_temporizador en_temporizador sur_minuterie   sur_minuterie   Bei_Timer   Bei_Timer
+register_shape  agregar_forma   agregar_forma   ajouter_une_forme   ajouter_une_forme   Form_hinzufügen Form_hinzufuegen
+resetscreen reiniciar_pantalla  reiniciar_pantalla  réinitialiser_écran reinitialiser_ecran Bildschirm_zurücksetzen Bildschirm_zuruecksetzen
+save    ahorrar ahorrar sauvegarder sauvegarder speichern   speichern
+screensize  tamaño_pantalla tamano_pantalla taille_écran    taille_ecran    Bildschirmgröße Bildschirmgroesse
+setup   configurar  configurar  configuration   configuration   Einrichten  Einrichten
+setworldcoordinates establecer_coordenadas_mundo    establecer_coordenadas_mundo    définir_coordonnées_monde   definir_coordonnees_monde   Weltkoordinaten_setzen  Weltkoordinaten_setzen
+textinput   ingresar_texto  ingresar_texto  entrer_texte    entrer_texte    Text_eingeben   Text_eingeben
+title   título  titulo  titre   titre   Titel   Titel
+tracer  tasa_dibujo tasa_dibujo taux_dessin taux_dessin Zeichengeschwindigkeit  Zeichengeschwindigkeit
+turtles tortugas    tortugas    tortues tortues Schildkröten    Schildkroeten
+update  actualizar  actualizar  mettre_à_jour   mettre_a_jour   Aktualisieren   Aktualisieren
+window_height   altura_la_ventana   altura_la_ventana   hauteur_fenêtre hauteur_fenetre Fensterhöhe Fensterhoehe
+window_width    ancho_la_ventana    ancho_la_ventana    largeur_fenêtre largeur_fenetre Fensterbreite   Fensterbreite
+back    atrás   atras   reculer reculer Rückwärts   Rueckwaerts
+begin_fill  comenzar_a_rellenar comenzar_a_rellenar commencer_remplissage   commencer_remplissage   Füllen_beginnen Fuellen_beginnen
+begin_poly  comenzar_polígono   comenzar_poligono   commencer_polygone  commencer_polygone  Polygon_beginnen    Polygon_beginnen
+circle  círculo circulo cercle  cercle  Kreis   Kreis
+clear   borrar  borrar  effacer effacer Löschen Loeschen
+clearstamp  borrar_sello    borrar_sello    effacer_tampon  effacer_tampon  Stempel_löschen Stempel_loeschen
+clearstamps borrar_todos_sellos borrar_todos_sellos effacer_tous_tampons    effacer_tous_tampons    Alle_Stempel_löschen    Alle_Stempel_loeschen
+clone   clonar  clonar  cloner  cloner  Klonen  Klonen
+color   color   color   couleur couleur Farbe   Farbe
+degrees grados  grados  degrés  degres  Grad    Grad
+distance    distancia   distancia   distance    distance    Distanz Distanz
+dot punto   punto   point   point   Punkt   Punkt
+end_fill    terminar_relleno    terminar_relleno    terminer_remplissage    terminer_remplissage    Füllen_beenden  Fuellen_beenden
+end_poly    terminar_polígono   terminar_poligono   terminer_polygone   terminer_polygone   Polygon_beenden Polygon_beenden
+fillcolor   color_relleno   color_relleno   couleur_remplissage couleur_remplissage Füllfarbe   Fuellfarbe
+filling rellenando_ahora    rellenando_ahora    remplissage_en_cours    remplissage_en_cours    Gerade_füllen   Gerade_fuellen
+forward adelante    adelante    avancer avancer Vorwärts    Vorwaerts
+get_poly    obtener_último_polígono obtener_ultimo_poligono obtenir_dernier_polygone    obtenir_dernier_polygone    Letztes_Polygon_abrufen Letztes_Polygon_abrufen
+getpen  obtener_pluma   obtener_pluma   obtenir_stylo   obtenir_stylo   Stift_abrufen   Stift_abrufen
+getscreen   obtener_pantalla    obtener_pantalla    obtenir_écran   obtenir_ecran   Bildschirm_abrufen  Bildschirm_abrufen
+get_shapepoly   obtener_polígono_forma  obtener_poligono_forma  obtenir_polygone_forme  obtenir_polygone_forme  Formpolygon_abrufen Formpolygon_abrufen
+getturtle   obtener_tortuga obtener_tortuga obtenir_tortue  obtenir_tortue  Schildkröte_abrufen Schildkroete_abrufen
+goto    ir_a    ir_a    aller_à aller_a Gehe_zu Gehe_zu
+heading dirección   direccion   direction   direction   Richtung    Richtung
+hideturtle  ocultar_tortuga ocultar_tortuga cacher_tortue   cacher_tortue   Schildkröte_verstecken  Schildkroete_verstecken
+home    origen  origen  origine origine Ursprung    Ursprung
+isdown  está_abajo  esta_abajo  est_abaissé est_abaisse Ist_unten   Ist_unten
+isvisible   es_visible  es_visible  est_visible est_visible Ist_sichtbar    Ist_sichtbar
+left    izquierda   izquierda   gauche  gauche  Links   Links
+onclick al_hacer_clic   al_hacer_clic   au_clic au_clic Bei_Klick   Bei_Klick
+ondrag  al_arrastrar    al_arrastrar    au_glisser  au_glisser  Beim_Ziehen Beim_Ziehen
+onrelease   al_soltar   al_soltar   au_relâchement  au_relachement  Bei_Freigabe    Bei_Freigabe
+pen pluma   pluma   stylo   stylo   Stift   Stift
+pencolor    configuración_pluma configuracion_pluma paramètres_stylo    parametres_stylo    Stifteinstellung    Stifteinstellung
+pendown pluma_abajo pluma_abajo stylo_en_bas    stylo_en_bas    Stift_nach_unten    Stift_nach_unten
+pensize tamaño_pluma    tamano_pluma    taille_stylo    taille_stylo    Stiftdicke  Stiftdicke
+penup   pluma_arriba    pluma_arriba    stylo_en_haut   stylo_en_haut   Stift_nach_oben Stift_nach_oben
+position    posición    posicion    position    position    Position    Position
+radians radianes    radianes    radians radians Bogenmaß    Bogenmass
+right   derecha derecha droite  droite  Rechts  Rechts
+reset   reiniciar_pantalla  reiniciar_pantalla  réinitialiser_écran reinitialiser_ecran Bildschirm_zurücksetzen Bildschirm_zuruecksetzen
+resizemode  modo_cambio_tamaño  modo_cambio_tamano  mode_redimensionnement  mode_redimensionnement  Größenmodus Groessenmodus
+setheading  establecer_dirección    establecer_direccion    définir_direction   definir_direction   Richtung_setzen Richtung_setzen
+setundobuffer   establecer_búfer_deshacer   establecer_bufer_deshacer   définir_tampon_annulation   definir_tampon_annulation   Rückgangepuffer_setzen  Rueckgangepuffer_setzen
+setx    establecer_x    establecer_x    définir_x   definir_x   X_setzen    X_setzen
+sety    establecer_y    establecer_y    définir_y   definir_y   Y_setzen    Y_setzen
+shape   forma   forma   forme   forme   Form    Form
+shapesize   tamaño_forma    tamano_forma    taille_forme    taille_forme    Formgröße   Formgroesse
+shapetransform  transformación_forma    transformacion_forma    transformation_forme    transformation_forme    Formtransformation  Formtransformation
+shearfactor factor_cizalladura  factor_cizalladura  facteur_cisaillement    facteur_cisaillement    Scherspannung   Scherspannung
+showturtle  mostrar_tortuga mostrar_tortuga montrer_tortue  montrer_tortue  Schildkröte_zeigen  Schildkroete_zeigen
+speed   velocidad   velocidad   vitesse vitesse Geschwindigkeit Geschwindigkeit
+stamp   sello   sello   tampon  tampon  Stempeln    Stempeln
+teleport    teletransportar teletransportar téléporter  teleporter  Teleportieren   Teleportieren
+tilt    rotar_cursor    rotar_cursor    faire_pivoter_curseur   faire_pivoter_curseur   Cursor_drehen   Cursor_drehen
+tiltangle   rotar_cursor_hacia  rotar_cursor_hacia  orienter_curseur_vers   orienter_curseur_vers   Cursor_drehen_zu    Cursor_drehen_zu
+towards hacia   hacia   vers    vers    Zu  Zu
+undo    deshacer    deshacer    annuler annuler Rückgängig  Rueckgaengig
+undobufferentries   entradas_búfer_deshacer entradas_bufer_deshacer entrées_tampon_annulation   entrees_tampon_annulation   Rückgangepuffer_Einträge    Rueckgangepuffer_Eintraege
+write   escribir    escribir    écrire  ecrire  Schreiben   Schreiben
+xcor    posición_x  posicion_x  position_x  position_x  X_Position  X_Position
+ycor    posición_y  posicion_y  position_y  position_y  Y_Position  Y_Position
+picname imagen  imagen  image   image   Bild    Bild
+cmode   modo_color  modo_color  mode_couleur    mode_couleur    Farbmodus   Farbmodus
+xdummy  ignorar_x   ignorar_x   ignorer_x   ignorer_x   X_ignorieren    X_ignorieren
+ydummy  ignorar_y   ignorar_y   ignorer_y   ignorer_y   Y_ignorieren    Y_ignorieren
+prompt  mensaje mensaje message message Nachricht   Nachricht
+default predeterminado  predeterminado  par_défaut  par_defaut  Standard    Standard
+minval  valor_mínimo    valor_minimo    valeur_minimale valeur_minimale Mindestwert Mindestwert
+maxval  valor_máximo    valor_maximo    valeur_maximale valeur_maximale Höchstwert  Hoechstwert
+filename    nombre_de_archivo   nombre_de_archivo   nom_de_fichier  nom_de_fichier  Dateiname   Dateiname
+overwrite   sobrescribir    sobrescribir    écraser ecraser überschreiben   ueberschreiben
+fun función funcion fonction    fonction    Funktion    Funktion
+key tecla_teclado   tecla_teclado   touche_clavier  touche_clavier  Tastaturtaste   Tastaturtaste
+btn botón   boton   bouton  bouton  Schaltfläche    Schaltflaeche
+add agregar_forma   agregar_forma   ajouter_une_forme   ajouter_une_forme   Form_hinzufügen Form_hinzufuegen
+canvwidth   ancho_lienzo    ancho_lienzo    largeur_toile   largeur_toile   Leinwandbreite  Leinwandbreite
+canvheight  altura_lienzo   altura_lienzo   hauteur_toile   hauteur_toile   Leinwandhöhe    Leinwandhoehe
+bg  fondo   fondo   arrière_plan    arriere_plan    Hintergrund Hintergrund
+width   ancho   ancho   largeur largeur Breite  Breite
+height  alto    alto    hauteur hauteur Höhe    Hoehe
+startx  inicio_x    inicio_x    début_x debut_x Start_X Start_X
+starty  inicio_y    inicio_y    début_y debut_y Start_Y Start_Y
+llx x_inferior_izquierda    x_inferior_izquierda    bas_gauche_x    bas_gauche_x    Unten_links_X   Unten_links_X
+lly y_inferior_izquierda    y_inferior_izquierda    bas_gauche_y    bas_gauche_y    Unten_links_Y   Unten_links_Y
+urx x_superior_derecha  x_superior_derecha  haut_droit_x    haut_droit_x    Oben_rechts_X   Oben_rechts_X
+ury y_superior_derecha  y_superior_derecha  haut_droit_y    haut_droit_y    Oben_rechts_Y   Oben_rechts_Y
+titlestring título  titulo  titre   titre   Titel   Titel
+radius  radio   radio   rayon   rayon   Radius  Radius
+extent  extensión   extension   étendue etendue Bogenmaß    Bogenmass
+steps   pasos   pasos   étapes  etapes  Schritte    Schritte
+stampid ID_sello    ID_sello    ID_tampon   ID_tampon   Stempel_ID  Stempel_ID
+fullcircle  círculo_completo    circulo_completo    cercle_complet  cercle_complet  Vollkreis   Vollkreis
+size    tamaño  tamano  taille  taille  Größe   Groesse
+pendict configuraciones_pluma   configuraciones_pluma   paramètres_stylo    parametres_stylo    Stifteinstellungen  Stifteinstellungen
+angle   ángulo  angulo  angle   angle   Winkel  Winkel
+rmode   modo_cambio_tamaño  modo_cambio_tamano  mode_redimensionnement  mode_redimensionnement  Größenmodus Groessenmodus
+to_angle    ángulo  angulo  angle   angle   Winkel  Winkel
+name    nombre  nombre  nom nom Name    Name
+stretch_wid ancho_estiramiento  ancho_estiramiento  étirer_largeur  etirer_largeur  Streckbreite    Streckbreite
+stretch_len longitud_estiramiento   longitud_estiramiento   étirer_longueur etirer_longueur Strecklänge Strecklaenge
+outline contorno    contorno    contour contour Umriss  Umriss
+shear   cizalladura cizalladura cisaillement    cisaillement    Schub   Schub
+fill_gap    hueco_relleno   hueco_relleno   écart_remplissage   ecart_remplissage   Fülllücke   Fuellluecke
+move    mover   mover   déplacer    deplacer    Bewegen Bewegen
+align   alinear alinear aligner aligner Ausrichten  Ausrichten
+font    fuente  fuente  police  police  Schriftart  Schriftart
+black   negro   negro   noir    noir    Schwarz Schwarz
+blue    azul    azul    bleu    bleu    Blau    Blau
+brown   marrón  marron  brun    brun    Braun   Braun
+orange  naranja naranja orange  orange  Orange  Orange
+gray    gris    gris    gris    gris    Grau    Grau
+grey    gris    gris    gris    gris    Grau    Grau
+green   verde   verde   vert    vert    Grün    Gruen
+purple  morado  morado  violet  violet  Lila    Lila
+violet  violeta violeta violet  violet  Violett Violett
+pink    rosa    rosa    rose    rose    Rosa    Rosa
+yellow  amarillo    amarillo    jaune   jaune   Gelb    Gelb
+white   blanco  blanco  blanc   blanc   Weiß    Weiss
+red rojo    rojo    rouge   rouge   Rot Rot
+magenta magenta magenta magenta magenta Magenta Magenta
+cyan    cian    cian    cyan    cyan    Cyan    Cyan
+arrow   flecha  flecha  flèche  fleche  Pfeil   Pfeil
+blank   vacío   vacio   vide    vide    Leer    Leer
+classic clásico clasico classique   classique   Klassisch   Klassisch
+square  cuadrado    cuadrado    carré   carre   Quadrat Quadrat
+triangle    triángulo   triangulo   triangle    triangle    Dreieck Dreieck
+turtle  tortuga tortuga tortue  tortue  Schildkröte Schildkroete
+polygon polígono    poligono    polygone    polygone    Polygon Polygon
+image   imagen  imagen  image   image   Bild    Bild
+compound    compuesto   compuesto   composé compose Verbund Verbund
+center  centro  centro  centre  centre  Zentrum Zentrum
+nopic   nada    nada    rien    rien    Nichts  Nichts'''.splitlines()
+
+def _create_translation_dictionaries():
+    global ES, ES_ASCII, FR, FR_ASCII, DE, DE_ASCII
+
+    ES = {}
+    ES_ASCII = {}
+    FR = {}
+    FR_ASCII = {}
+    DE = {}
+    DE_ASCII = {}
+
+    for i, row in enumerate(_TRANSLATION_SPREADSHEET):
+        assert '-' not in row, 'Dash character found in spreadsheet row: ' + row
+        assert "'" not in row, 'Quote character found in spreadsheet row: ' + row
+
+        spreadsheet_columns = row.split()
+
+        assert len(spreadsheet_columns) == _NUM_LANGUAGES, 'Extra space found in spreadsheet row: ' + row
+
+        english_identifier = spreadsheet_columns[0]
+
+        ES[english_identifier] = spreadsheet_columns[1]
+        ES_ASCII[english_identifier] = spreadsheet_columns[2]
+        FR[english_identifier] = spreadsheet_columns[3]
+        FR_ASCII[english_identifier] = spreadsheet_columns[4]
+        DE[english_identifier] = spreadsheet_columns[5]
+        DE_ASCII[english_identifier] = spreadsheet_columns[6]
+
+
+_create_translation_dictionaries()
 _ES_INVERSE = {v: k for k, v in ES.items()}
-
-ES_ASCII = {'bgcolor': 'color_fondo', 'bgpic': 'imagen_fondo', 'bye': 'adios', 'clearscreen': 'borrar_pantalla', 'colormode': 'modo_color', 'delay': 'retraso', 'exitonclick': 'salir_al_hacer_clic', 'getcanvas': 'obtener_lienzo', 'getshapes': 'obtener_formas', 'listen': 'enfocar_ventana', 'mainloop': 'bucle_principal', 'mode': 'modo', 'no_animation': 'sin_animacion', 'numinput': 'ingresar_numero', 'onkey': 'al_presionar_tecla', 'onkeypress': 'al_pulsar_tecla', 'onkeyrelease': 'al_soltar_tecla', 'onscreenclick': 'al_hacer_clic_en_pantalla', 'ontimer': 'en_temporizador', 'register_shape': 'agregar_forma', 'resetscreen': 'reiniciar_pantalla', 'save': 'ahorrar', 'screensize': 'tamano_pantalla', 'setup': 'configurar', 'setworldcoordinates': 'establecer_coordenadas_mundo', 'textinput': 'ingresar_texto', 'title': 'titulo', 'tracer': 'tasa_dibujo', 'turtles': 'tortugas', 'update': 'actualizar', 'window_height': 'altura_la_ventana', 'window_width': 'ancho_la_ventana', 'back': 'atras', 'begin_fill': 'comenzar_a_rellenar', 'begin_poly': 'comenzar_poligono', 'circle': 'circulo', 'clear': 'borrar', 'clearstamp': 'borrar_sello', 'clearstamps': 'borrar_todos_sellos', 'clone': 'clonar', 'color': 'color', 'degrees': 'grados', 'distance': 'distancia', 'dot': 'punto', 'end_fill': 'terminar_relleno', 'end_poly': 'terminar_poligono', 'fillcolor': 'color_relleno', 'filling': 'rellenando_ahora', 'forward': 'adelante', 'get_poly': 'obtener_ultimo_poligono', 'getpen': 'obtener_pluma', 'getscreen': 'obtener_pantalla', 'get_shapepoly': 'obtener_poligono_forma', 'getturtle': 'obtener_tortuga', 'goto': 'ir_a', 'heading': 'direccion', 'hideturtle': 'ocultar_tortuga', 'home': 'origen', 'isdown': 'esta_abajo', 'isvisible': 'es_visible', 'left': 'izquierda', 'onclick': 'al_hacer_clic', 'ondrag': 'al_arrastrar', 'onrelease': 'al_soltar', 'pen': 'pluma', 'pencolor': 'configuracion_pluma', 'pendown': 'pluma_abajo', 'pensize': 'tamano_pluma', 'penup': 'pluma_arriba', 'position': 'posicion', 'radians': 'radianes', 'right': 'derecha', 'reset': 'reiniciar_pantalla', 'resizemode': 'modo_cambio_tamano', 'setheading': 'establecer_direccion', 'setundobuffer': 'establecer_bufer_deshacer', 'setx': 'establecer_x', 'sety': 'establecer_y', 'shape': 'forma', 'shapesize': 'tamano_forma', 'shapetransform': 'transformacion_forma', 'shearfactor': 'factor_cizalladura', 'showturtle': 'mostrar_tortuga', 'speed': 'velocidad', 'stamp': 'sello', 'teleport': 'teletransportar', 'tilt': 'rotar_cursor', 'tiltangle': 'rotar_cursor_hacia', 'towards': 'hacia', 'undo': 'deshacer', 'undobufferentries': 'entradas_bufer_deshacer', 'write': 'escribir', 'xcor': 'posicion_x', 'ycor': 'posicion_y', 'picname': 'imagen', 'cmode': 'modo_color', 'xdummy': 'ignorar_x', 'ydummy': 'ignorar_y', 'prompt': 'mensaje', 'default': 'predeterminado', 'minval': 'valor_minimo', 'maxval': 'valor_maximo', 'filename': 'nombre_de_archivo', 'overwrite': 'sobrescribir', 'fun': 'funcion', 'key': 'tecla_teclado', 'btn': 'boton', 'add': 'agregar_forma', 'canvwidth': 'ancho_lienzo', 'canvheight': 'altura_lienzo', 'bg': 'fondo', 'width': 'ancho', 'height': 'alto', 'startx': 'inicio_x', 'starty': 'inicio_y', 'llx': 'x_inferior_izquierda', 'lly': 'y_inferior_izquierda', 'urx': 'x_superior_derecha', 'ury': 'y_superior_derecha', 'titlestring': 'titulo', 'radius': 'radio', 'extent': 'extension', 'steps': 'pasos', 'stampid': 'ID_sello', 'fullcircle': 'circulo_completo', 'size': 'tamano', 'pendict': 'configuraciones_pluma', 'angle': 'angulo', 'rmode': 'modo_cambio_tamano', 'to_angle': 'angulo', 'name': 'nombre', 'stretch_wid': 'ancho_estiramiento', 'stretch_len': 'longitud_estiramiento', 'outline': 'contorno', 'shear': 'cizalladura', 'fill_gap': 'hueco_relleno', 'move': 'mover', 'align': 'alinear', 'font': 'fuente', 'black': 'negro', 'blue': 'azul', 'brown': 'marron', 'orange': 'naranja', 'gray': 'gris', 'grey': 'gris', 'green': 'verde', 'purple': 'morado', 'violet': 'violeta', 'pink': 'rosa', 'yellow': 'amarillo', 'white': 'blanco', 'red': 'rojo', 'magenta': 'magenta', 'cyan': 'cian', 'arrow': 'flecha', 'blank': 'vacio', 'classic': 'clasico', 'square': 'cuadrado', 'triangle': 'triangulo', 'turtle': 'tortuga', 'polygon': 'poligono', 'image': 'imagen', 'compound': 'compuesto', 'center': 'centro', 'nopic': 'nada'}
 _ES_ASCII_INVERSE = {v: k for k, v in ES_ASCII.items()}
-
-FR = {'bgcolor': 'couleur_fond', 'bgpic': 'image_fond', 'bye': 'au_revoir', 'clearscreen': 'effacer_écran', 'colormode': 'mode_couleur', 'delay': 'délai', 'exitonclick': 'quitter_au_clic', 'getcanvas': 'obtenir_toile', 'getshapes': 'obtenir_formes', 'listen': 'fenêtre_focus', 'mainloop': 'boucle_principale', 'mode': 'mode', 'no_animation': 'pas_animation', 'numinput': 'entrer_un_nombre', 'onkey': 'sur_touche', 'onkeypress': 'à_pression_touche', 'onkeyrelease': 'au_relâchement_touche', 'onscreenclick': 'au_clic_sur_écran', 'ontimer': 'sur_minuterie', 'register_shape': 'ajouter_une_forme', 'resetscreen': 'réinitialiser_écran', 'save': 'sauvegarder', 'screensize': 'taille_écran', 'setup': 'configuration', 'setworldcoordinates': 'définir_coordonnées_monde', 'textinput': 'entrer_texte', 'title': 'titre', 'tracer': 'taux_dessin', 'turtles': 'tortues', 'update': 'mettre_à_jour', 'window_height': 'hauteur_fenêtre', 'window_width': 'largeur_fenêtre', 'back': 'reculer', 'begin_fill': 'commencer_remplissage', 'begin_poly': 'commencer_polygone', 'circle': 'cercle', 'clear': 'effacer', 'clearstamp': 'effacer_tampon', 'clearstamps': 'effacer_tous_tampons', 'clone': 'cloner', 'color': 'couleur', 'degrees': 'degrés', 'distance': 'distance', 'dot': 'point', 'end_fill': 'terminer_remplissage', 'end_poly': 'terminer_polygone', 'fillcolor': 'couleur_remplissage', 'filling': 'remplissage_en_cours', 'forward': 'avancer', 'get_poly': 'obtenir_dernier_polygone', 'getpen': 'obtenir_stylo', 'getscreen': 'obtenir_écran', 'get_shapepoly': 'obtenir_polygone_forme', 'getturtle': 'obtenir_tortue', 'goto': 'aller_à', 'heading': 'direction', 'hideturtle': 'cacher_tortue', 'home': 'origine', 'isdown': 'est_abaissé', 'isvisible': 'est_visible', 'left': 'gauche', 'onclick': 'au_clic', 'ondrag': 'au_glisser', 'onrelease': 'au_relâchement', 'pen': 'stylo', 'pencolor': 'paramètres_stylo', 'pendown': 'stylo_en_bas', 'pensize': 'taille_stylo', 'penup': 'stylo_en_haut', 'position': 'position', 'radians': 'radians', 'right': 'droite', 'reset': 'réinitialiser_écran', 'resizemode': 'mode_redimensionnement', 'setheading': 'définir_direction', 'setundobuffer': 'définir_tampon_annulation', 'setx': 'définir_x', 'sety': 'définir_y', 'shape': 'forme', 'shapesize': 'taille_forme', 'shapetransform': 'transformation_forme', 'shearfactor': 'facteur_cisaillement', 'showturtle': 'montrer_tortue', 'speed': 'vitesse', 'stamp': 'tampon', 'teleport': 'téléporter', 'tilt': 'faire_pivoter_curseur', 'tiltangle': 'orienter_curseur_vers', 'towards': 'vers', 'undo': 'annuler', 'undobufferentries': 'entrées_tampon_annulation', 'write': 'écrire', 'xcor': 'position_x', 'ycor': 'position_y', 'picname': 'image', 'cmode': 'mode_couleur', 'xdummy': 'ignorer_x', 'ydummy': 'ignorer_y', 'prompt': 'message', 'default': 'par_défaut', 'minval': 'valeur_minimale', 'maxval': 'valeur_maximale', 'filename': 'nom_de_fichier', 'overwrite': 'écraser', 'fun': 'fonction', 'key': 'touche_clavier', 'btn': 'bouton', 'add': 'ajouter_une_forme', 'canvwidth': 'largeur_toile', 'canvheight': 'hauteur_toile', 'bg': 'arrière_plan', 'width': 'largeur', 'height': 'hauteur', 'startx': 'début_x', 'starty': 'début_y', 'llx': 'bas_gauche_x', 'lly': 'bas_gauche_y', 'urx': 'haut_droit_x', 'ury': 'haut_droit_y', 'titlestring': 'titre', 'radius': 'rayon', 'extent': 'étendue', 'steps': 'étapes', 'stampid': 'ID_tampon', 'fullcircle': 'cercle_complet', 'size': 'taille', 'pendict': 'paramètres_stylo', 'angle': 'angle', 'rmode': 'mode_redimensionnement', 'to_angle': 'angle', 'name': 'nom', 'stretch_wid': 'étirer_largeur', 'stretch_len': 'étirer_longueur', 'outline': 'contour', 'shear': 'cisaillement', 'fill_gap': 'écart_remplissage', 'move': 'déplacer', 'align': 'aligner', 'font': 'police', 'black': 'noir', 'blue': 'bleu', 'brown': 'brun', 'orange': 'orange', 'gray': 'gris', 'grey': 'gris', 'green': 'vert', 'purple': 'violet', 'violet': 'violet', 'pink': 'rose', 'yellow': 'jaune', 'white': 'blanc', 'red': 'rouge', 'magenta': 'magenta', 'cyan': 'cyan', 'arrow': 'flèche', 'blank': 'vide', 'classic': 'classique', 'square': 'carré', 'triangle': 'triangle', 'turtle': 'tortue', 'polygon': 'polygone', 'image': 'image', 'compound': 'composé', 'center': 'centre', 'nopic': 'rien'}
 _FR_INVERSE = {v: k for k, v in FR.items()}
-
-FR_ASCII = {'bgcolor': 'couleur_fond', 'bgpic': 'image_fond', 'bye': 'au_revoir', 'clearscreen': 'effacer_ecran', 'colormode': 'mode_couleur', 'delay': 'delai', 'exitonclick': 'quitter_au_clic', 'getcanvas': 'obtenir_toile', 'getshapes': 'obtenir_formes', 'listen': 'fenetre_focus', 'mainloop': 'boucle_principale', 'mode': 'mode', 'no_animation': 'pas_animation', 'numinput': 'entrer_un_nombre', 'onkey': 'sur_touche', 'onkeypress': 'a_pression_touche', 'onkeyrelease': 'au_relachement_touche', 'onscreenclick': 'au_clic_sur_ecran', 'ontimer': 'sur_minuterie', 'register_shape': 'ajouter_une_forme', 'resetscreen': 'reinitialiser_ecran', 'save': 'sauvegarder', 'screensize': 'taille_ecran', 'setup': 'configuration', 'setworldcoordinates': 'definir_coordonnees_monde', 'textinput': 'entrer_texte', 'title': 'titre', 'tracer': 'taux_dessin', 'turtles': 'tortues', 'update': 'mettre_a_jour', 'window_height': 'hauteur_fenetre', 'window_width': 'largeur_fenetre', 'back': 'reculer', 'begin_fill': 'commencer_remplissage', 'begin_poly': 'commencer_polygone', 'circle': 'cercle', 'clear': 'effacer', 'clearstamp': 'effacer_tampon', 'clearstamps': 'effacer_tous_tampons', 'clone': 'cloner', 'color': 'couleur', 'degrees': 'degres', 'distance': 'distance', 'dot': 'point', 'end_fill': 'terminer_remplissage', 'end_poly': 'terminer_polygone', 'fillcolor': 'couleur_remplissage', 'filling': 'remplissage_en_cours', 'forward': 'avancer', 'get_poly': 'obtenir_dernier_polygone', 'getpen': 'obtenir_stylo', 'getscreen': 'obtenir_ecran', 'get_shapepoly': 'obtenir_polygone_forme', 'getturtle': 'obtenir_tortue', 'goto': 'aller_a', 'heading': 'direction', 'hideturtle': 'cacher_tortue', 'home': 'origine', 'isdown': 'est_abaisse', 'isvisible': 'est_visible', 'left': 'gauche', 'onclick': 'au_clic', 'ondrag': 'au_glisser', 'onrelease': 'au_relachement', 'pen': 'stylo', 'pencolor': 'parametres_stylo', 'pendown': 'stylo_en_bas', 'pensize': 'taille_stylo', 'penup': 'stylo_en_haut', 'position': 'position', 'radians': 'radians', 'right': 'droite', 'reset': 'reinitialiser_ecran', 'resizemode': 'mode_redimensionnement', 'setheading': 'definir_direction', 'setundobuffer': 'definir_tampon_annulation', 'setx': 'definir_x', 'sety': 'definir_y', 'shape': 'forme', 'shapesize': 'taille_forme', 'shapetransform': 'transformation_forme', 'shearfactor': 'facteur_cisaillement', 'showturtle': 'montrer_tortue', 'speed': 'vitesse', 'stamp': 'tampon', 'teleport': 'teleporter', 'tilt': 'faire_pivoter_curseur', 'tiltangle': 'orienter_curseur_vers', 'towards': 'vers', 'undo': 'annuler', 'undobufferentries': 'entrees_tampon_annulation', 'write': 'ecrire', 'xcor': 'position_x', 'ycor': 'position_y', 'picname': 'image', 'cmode': 'mode_couleur', 'xdummy': 'ignorer_x', 'ydummy': 'ignorer_y', 'prompt': 'message', 'default': 'par_defaut', 'minval': 'valeur_minimale', 'maxval': 'valeur_maximale', 'filename': 'nom_de_fichier', 'overwrite': 'ecraser', 'fun': 'fonction', 'key': 'touche_clavier', 'btn': 'bouton', 'add': 'ajouter_une_forme', 'canvwidth': 'largeur_toile', 'canvheight': 'hauteur_toile', 'bg': 'arriere_plan', 'width': 'largeur', 'height': 'hauteur', 'startx': 'debut_x', 'starty': 'debut_y', 'llx': 'bas_gauche_x', 'lly': 'bas_gauche_y', 'urx': 'haut_droit_x', 'ury': 'haut_droit_y', 'titlestring': 'titre', 'radius': 'rayon', 'extent': 'etendue', 'steps': 'etapes', 'stampid': 'ID_tampon', 'fullcircle': 'cercle_complet', 'size': 'taille', 'pendict': 'parametres_stylo', 'angle': 'angle', 'rmode': 'mode_redimensionnement', 'to_angle': 'angle', 'name': 'nom', 'stretch_wid': 'etirer_largeur', 'stretch_len': 'etirer_longueur', 'outline': 'contour', 'shear': 'cisaillement', 'fill_gap': 'ecart_remplissage', 'move': 'deplacer', 'align': 'aligner', 'font': 'police', 'black': 'noir', 'blue': 'bleu', 'brown': 'brun', 'orange': 'orange', 'gray': 'gris', 'grey': 'gris', 'green': 'vert', 'purple': 'violet', 'violet': 'violet', 'pink': 'rose', 'yellow': 'jaune', 'white': 'blanc', 'red': 'rouge', 'magenta': 'magenta', 'cyan': 'cyan', 'arrow': 'fleche', 'blank': 'vide', 'classic': 'classique', 'square': 'carre', 'triangle': 'triangle', 'turtle': 'tortue', 'polygon': 'polygone', 'image': 'image', 'compound': 'compose', 'center': 'centre', 'nopic': 'rien'}
 _FR_ASCII_INVERSE = {v: k for k, v in FR_ASCII.items()}
-
-DE = {'bgcolor': 'Hintergrundfarbe', 'bgpic': 'Hintergrundbild', 'bye': 'Tschüss', 'clearscreen': 'Bildschirm_löschen', 'colormode': 'Farbmodus', 'delay': 'Verzögerung', 'exitonclick': 'Beenden_bei_Klick', 'getcanvas': 'Leinwand_abrufen', 'getshapes': 'Formen_abrufen', 'listen': 'Fenster_fokussieren', 'mainloop': 'Hauptschleife', 'mode': 'Modus', 'no_animation': 'keine_Animation', 'numinput': 'Zahl_eingeben', 'onkey': 'Bei_Taste', 'onkeypress': 'Bei_Tastendruck', 'onkeyrelease': 'Bei_Tastenfreigabe', 'onscreenclick': 'Bei_Bildschirmklick', 'ontimer': 'Bei_Timer', 'register_shape': 'Form_hinzufügen', 'resetscreen': 'Bildschirm_zurücksetzen', 'save': 'speichern', 'screensize': 'Bildschirmgröße', 'setup': 'Einrichten', 'setworldcoordinates': 'Weltkoordinaten_setzen', 'textinput': 'Text_eingeben', 'title': 'Titel', 'tracer': 'Zeichengeschwindigkeit', 'turtles': 'Schildkröten', 'update': 'Aktualisieren', 'window_height': 'Fensterhöhe', 'window_width': 'Fensterbreite', 'back': 'Rückwärts', 'begin_fill': 'Füllen_beginnen', 'begin_poly': 'Polygon_beginnen', 'circle': 'Kreis', 'clear': 'Löschen', 'clearstamp': 'Stempel_löschen', 'clearstamps': 'Alle_Stempel_löschen', 'clone': 'Klonen', 'color': 'Farbe', 'degrees': 'Grad', 'distance': 'Distanz', 'dot': 'Punkt', 'end_fill': 'Füllen_beenden', 'end_poly': 'Polygon_beenden', 'fillcolor': 'Füllfarbe', 'filling': 'Gerade_füllen', 'forward': 'Vorwärts', 'get_poly': 'Letztes_Polygon_abrufen', 'getpen': 'Stift_abrufen', 'getscreen': 'Bildschirm_abrufen', 'get_shapepoly': 'Formpolygon_abrufen', 'getturtle': 'Schildkröte_abrufen', 'goto': 'Gehe_zu', 'heading': 'Richtung', 'hideturtle': 'Schildkröte_verstecken', 'home': 'Ursprung', 'isdown': 'Ist_unten', 'isvisible': 'Ist_sichtbar', 'left': 'Links', 'onclick': 'Bei_Klick', 'ondrag': 'Beim_Ziehen', 'onrelease': 'Bei_Freigabe', 'pen': 'Stift', 'pencolor': 'Stifteinstellung', 'pendown': 'Stift_nach_unten', 'pensize': 'Stiftdicke', 'penup': 'Stift_nach_oben', 'position': 'Position', 'radians': 'Bogenmaß', 'right': 'Rechts', 'reset': 'Bildschirm_zurücksetzen', 'resizemode': 'Größenmodus', 'setheading': 'Richtung_setzen', 'setundobuffer': 'Rückgangepuffer_setzen', 'setx': 'X_setzen', 'sety': 'Y_setzen', 'shape': 'Form', 'shapesize': 'Formgröße', 'shapetransform': 'Formtransformation', 'shearfactor': 'Scherspannung', 'showturtle': 'Schildkröte_zeigen', 'speed': 'Geschwindigkeit', 'stamp': 'Stempeln', 'teleport': 'Teleportieren', 'tilt': 'Cursor_drehen', 'tiltangle': 'Cursor_drehen_zu', 'towards': 'Zu', 'undo': 'Rückgängig', 'undobufferentries': 'Rückgangepuffer_Einträge', 'write': 'Schreiben', 'xcor': 'X_Position', 'ycor': 'Y_Position', 'picname': 'Bild', 'cmode': 'Farbmodus', 'xdummy': 'X_ignorieren', 'ydummy': 'Y_ignorieren', 'prompt': 'Nachricht', 'default': 'Standard', 'minval': 'Mindestwert', 'maxval': 'Höchstwert', 'filename': 'Dateiname', 'overwrite': 'überschreiben', 'fun': 'Funktion', 'key': 'Tastaturtaste', 'btn': 'Schaltfläche', 'add': 'Form_hinzufügen', 'canvwidth': 'Leinwandbreite', 'canvheight': 'Leinwandhöhe', 'bg': 'Hintergrund', 'width': 'Breite', 'height': 'Höhe', 'startx': 'Start_X', 'starty': 'Start_Y', 'llx': 'Unten_links_X', 'lly': 'Unten_links_Y', 'urx': 'Oben_rechts_X', 'ury': 'Oben_rechts_Y', 'titlestring': 'Titel', 'radius': 'Radius', 'extent': 'Bogenmaß', 'steps': 'Schritte', 'stampid': 'Stempel_ID', 'fullcircle': 'Vollkreis', 'size': 'Größe', 'pendict': 'Stifteinstellungen', 'angle': 'Winkel', 'rmode': 'Größenmodus', 'to_angle': 'Winkel', 'name': 'Name', 'stretch_wid': 'Streckbreite', 'stretch_len': 'Strecklänge', 'outline': 'Umriss', 'shear': 'Schub', 'fill_gap': 'Fülllücke', 'move': 'Bewegen', 'align': 'Ausrichten', 'font': 'Schriftart', 'black': 'Schwarz', 'blue': 'Blau', 'brown': 'Braun', 'orange': 'Orange', 'gray': 'Grau', 'grey': 'Grau', 'green': 'Grün', 'purple': 'Lila', 'violet': 'Violett', 'pink': 'Rosa', 'yellow': 'Gelb', 'white': 'Weiß', 'red': 'Rot', 'magenta': 'Magenta', 'cyan': 'Cyan', 'arrow': 'Pfeil', 'blank': 'Leer', 'classic': 'Klassisch', 'square': 'Quadrat', 'triangle': 'Dreieck', 'turtle': 'Schildkröte', 'polygon': 'Polygon', 'image': 'Bild', 'compound': 'Verbund', 'center': 'Zentrum', 'nopic': 'Nichts'}
 _DE_INVERSE = {v: k for k, v in DE.items()}
-
-DE_ASCII = {'bgcolor': 'Hintergrundfarbe', 'bgpic': 'Hintergrundbild', 'bye': 'Tschuess', 'clearscreen': 'Bildschirm_loeschen', 'colormode': 'Farbmodus', 'delay': 'Verzoegerung', 'exitonclick': 'Beenden_bei_Klick', 'getcanvas': 'Leinwand_abrufen', 'getshapes': 'Formen_abrufen', 'listen': 'Fenster_fokussieren', 'mainloop': 'Hauptschleife', 'mode': 'Modus', 'no_animation': 'keine_Animation', 'numinput': 'Zahl_eingeben', 'onkey': 'Bei_Taste', 'onkeypress': 'Bei_Tastendruck', 'onkeyrelease': 'Bei_Tastenfreigabe', 'onscreenclick': 'Bei_Bildschirmklick', 'ontimer': 'Bei_Timer', 'register_shape': 'Form_hinzufuegen', 'resetscreen': 'Bildschirm_zuruecksetzen', 'save': 'speichern', 'screensize': 'Bildschirmgroesse', 'setup': 'Einrichten', 'setworldcoordinates': 'Weltkoordinaten_setzen', 'textinput': 'Text_eingeben', 'title': 'Titel', 'tracer': 'Zeichengeschwindigkeit', 'turtles': 'Schildkroeten', 'update': 'Aktualisieren', 'window_height': 'Fensterhoehe', 'window_width': 'Fensterbreite', 'back': 'Rueckwaerts', 'begin_fill': 'Fuellen_beginnen', 'begin_poly': 'Polygon_beginnen', 'circle': 'Kreis', 'clear': 'Loeschen', 'clearstamp': 'Stempel_loeschen', 'clearstamps': 'Alle_Stempel_loeschen', 'clone': 'Klonen', 'color': 'Farbe', 'degrees': 'Grad', 'distance': 'Distanz', 'dot': 'Punkt', 'end_fill': 'Fuellen_beenden', 'end_poly': 'Polygon_beenden', 'fillcolor': 'Fuellfarbe', 'filling': 'Gerade_fuellen', 'forward': 'Vorwaerts', 'get_poly': 'Letztes_Polygon_abrufen', 'getpen': 'Stift_abrufen', 'getscreen': 'Bildschirm_abrufen', 'get_shapepoly': 'Formpolygon_abrufen', 'getturtle': 'Schildkroete_abrufen', 'goto': 'Gehe_zu', 'heading': 'Richtung', 'hideturtle': 'Schildkroete_verstecken', 'home': 'Ursprung', 'isdown': 'Ist_unten', 'isvisible': 'Ist_sichtbar', 'left': 'Links', 'onclick': 'Bei_Klick', 'ondrag': 'Beim_Ziehen', 'onrelease': 'Bei_Freigabe', 'pen': 'Stift', 'pencolor': 'Stifteinstellung', 'pendown': 'Stift_nach_unten', 'pensize': 'Stiftdicke', 'penup': 'Stift_nach_oben', 'position': 'Position', 'radians': 'Bogenmass', 'right': 'Rechts', 'reset': 'Bildschirm_zuruecksetzen', 'resizemode': 'Groessenmodus', 'setheading': 'Richtung_setzen', 'setundobuffer': 'Rueckgangepuffer_setzen', 'setx': 'X_setzen', 'sety': 'Y_setzen', 'shape': 'Form', 'shapesize': 'Formgroesse', 'shapetransform': 'Formtransformation', 'shearfactor': 'Scherspannung', 'showturtle': 'Schildkroete_zeigen', 'speed': 'Geschwindigkeit', 'stamp': 'Stempeln', 'teleport': 'Teleportieren', 'tilt': 'Cursor_drehen', 'tiltangle': 'Cursor_drehen_zu', 'towards': 'Zu', 'undo': 'Rueckgaengig', 'undobufferentries': 'Rueckgangepuffer_Eintraege', 'write': 'Schreiben', 'xcor': 'X_Position', 'ycor': 'Y_Position', 'picname': 'Bild', 'cmode': 'Farbmodus', 'xdummy': 'X_ignorieren', 'ydummy': 'Y_ignorieren', 'prompt': 'Nachricht', 'default': 'Standard', 'minval': 'Mindestwert', 'maxval': 'Hoechstwert', 'filename': 'Dateiname', 'overwrite': 'ueberschreiben', 'fun': 'Funktion', 'key': 'Tastaturtaste', 'btn': 'Schaltflaeche', 'add': 'Form_hinzufuegen', 'canvwidth': 'Leinwandbreite', 'canvheight': 'Leinwandhoehe', 'bg': 'Hintergrund', 'width': 'Breite', 'height': 'Hoehe', 'startx': 'Start_X', 'starty': 'Start_Y', 'llx': 'Unten_links_X', 'lly': 'Unten_links_Y', 'urx': 'Oben_rechts_X', 'ury': 'Oben_rechts_Y', 'titlestring': 'Titel', 'radius': 'Radius', 'extent': 'Bogenmass', 'steps': 'Schritte', 'stampid': 'Stempel_ID', 'fullcircle': 'Vollkreis', 'size': 'Groesse', 'pendict': 'Stifteinstellungen', 'angle': 'Winkel', 'rmode': 'Groessenmodus', 'to_angle': 'Winkel', 'name': 'Name', 'stretch_wid': 'Streckbreite', 'stretch_len': 'Strecklaenge', 'outline': 'Umriss', 'shear': 'Schub', 'fill_gap': 'Fuellluecke', 'move': 'Bewegen', 'align': 'Ausrichten', 'font': 'Schriftart', 'black': 'Schwarz', 'blue': 'Blau', 'brown': 'Braun', 'orange': 'Orange', 'gray': 'Grau', 'grey': 'Grau', 'green': 'Gruen', 'purple': 'Lila', 'violet': 'Violett', 'pink': 'Rosa', 'yellow': 'Gelb', 'white': 'Weiss', 'red': 'Rot', 'magenta': 'Magenta', 'cyan': 'Cyan', 'arrow': 'Pfeil', 'blank': 'Leer', 'classic': 'Klassisch', 'square': 'Quadrat', 'triangle': 'Dreieck', 'turtle': 'Schildkroete', 'polygon': 'Polygon', 'image': 'Bild', 'compound': 'Verbund', 'center': 'Zentrum', 'nopic': 'Nichts'}
 _DE_ASCII_INVERSE = {v: k for k, v in DE_ASCII.items()}
+
 
 _ALL_TRANSLATIONS = (ES, ES_ASCII, FR, FR_ASCII, DE, DE_ASCII)
 _ALL_TRANSLATIONS_AND_VARS = ((ES, 'ES'), (ES_ASCII, 'ES_ASCII'),
