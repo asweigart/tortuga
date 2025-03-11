@@ -1,123 +1,61 @@
+# tortuga
+
+Una implementación multilingüe del módulo turtle.py de Python. 
+
+A multilingual implementation of Python's turtle.py module.
 
 
-Una aplicación española del módulo turtle.py de Python.
 
-A Spanish implementation of Python's turtle.py module. This removes the langauge-barrier for using Python's Turtle for non-Engish students.
+## Motivation
 
-Only the names have been added. The functionality has not changed. This code:
+Turtle graphics has engaged students and beginners to learn programming for a half century. The Python programming language has a `turtle` module that comes with Python. Students write programs that control a "turtle" cursor, drawing lines behind it as it moves around the window. This lets students make generative art programs to create colorful, spirograph-like drawings.
 
-    >>> import tortuga
-    >>> t = tortuga.Tortuga()
-    >>> t.adelante(100)
-    >>> t.izquierda(90)
-    >>> t.color_de_lapiz('rojo')
-    >>> t.atras(50)
+However, all of the functions are in English. There are `forward()` and `left()` functions. But there are not, say, `adelante()` or `izquierda()` function for Spanish-speaking students. 
+
+Tortuga offers the same `turtle` module functions in English but also in the following languages: Spanish, French, German.
+
+(Several other languages are also planned. If you are a native speaker who can volunteer to translate, please contact al@inventwithpython.com)
+
+
+Only the non-English names have been added. The functionality has not changed. This code:
+
+    >>> from tortuga import *
+    >>> adelante(100)
+    >>> izquierda(90)
+    >>> color_de_lapiz('rojo')
+    >>> atras(50)
 
 ...produces the same output as this:
 
-    >>> import turtle
-    >>> t = turtle.Turtle()
-    >>> t.forward(100)
-    >>> t.left(90)
-    >>> t.pencolor('red')
-    >>> t.back(50)
+    >>> from tortuga import *
+    >>> forward(100)
+    >>> left(90)
+    >>> pencolor('red')
+    >>> back(50)
 
+There is no language selection setting in Tortuga. All languages exist in the Tortuga module simultaneously.
 
-A full Spanish-language tutorial is being written.
-
-The end goal of the Tortuga project is to add dozens of languages to turtle.py in the Python standard library. A language-switching function (such as `turtle.tortuga()` for Spanish) would change the language used by turtle.py.
-
-# What the Tortuga Project is Not
-
-Tortuga is not attempting to translate the Python keywords or the entirety of the Python standard library. T
-
-# Things to Translate
-
-- Module names (so that `import turtle` can be replaced by `from turtle import tortuga`)
-- Function, method, and class names
-- Strings that are passed to and returned from these functions & methods.
-- The docstrings and `help()` system
-- The Python documentation for turtle.py
-- Error messages from turtle.py
-- An example-based turtle tutorial written in "simple English"
-
-# Instructions for Translators
-
-1. Go to the Google spreadsheet (ask Al for the URL: al@inventwithpython.com or @AlSweigart on Twitter)
-
-1. Open up https://scratch.mit.edu and click Create at the top to run the Scratch editor. For general consistency, we'll be copying the translations from Scratch where we can. The "In Scratch UI" column will tell you which Scratch category (the colored labels at the top-middle part of the page, e.g. Motion, Looks, Pen). You can see the translations by clicking the globe icon in the menu bar and selecting a language.
-
-1. Fill in the translatons. Use the correct PEP-8 naming schemes: CapitalizedLetters for class names, lowercase_separated_by_underscores for everything else. Note that many of the English function names don't use underscores (such as `pencolor` or `showturtle`, but this is a mistake. Use underscores in your translatons.
-
-1. Translated names can include accented characters and unicode, but can't include apostraphes. Use a name that makes the most sense in the translated language.
-
-1. Double check for spelling and formatting. These translations need to be perfect since they can't easily be changed later on.
-
-# Process for Adding Translations to Code
-
-1. The identifiers (i.e. function and method names) and strings (i.e. strings for colors) are translated for a language and added to the Google spreadsheet. Please contact Al at al@inventwithpython.com for access to this spreadsheet.
-
-1. An "identifiers" dictionary is created for the language. For example, for Spanish:
-
-    _SPANISH_IDENTIFIERS = {
-    'TurtleScreen': 'PantallaTortuga',
-    'RawTurtle': 'TortugaBruta',
-    'RawPen':'LapizBruto',
-    ...
-
-1. Add the identifiers values to `__all__`
-
-1. A "strings" dictionary is created for the language. For example, for Spanish:
-
-    _SPANISH_STRINGS =
-    'negro': 'black',
-    'azul': 'blue',
-    'marron': 'brown',
-    ...
-
-1. TODO - finish this section
-
-1. Translate the simple English tutorial
-
-
-# Python Bug / Issue 24990
-
-Adding translations to turtle.py is tracked by this issue on the Python bug tracker:
-
-https://bugs.python.org/issue24990
-
-# TODO
-
-Some of the error messages will also need translations, such as `"stretch_wid/stretch_len must not be zero"`.
+For languages that use the Roman alphabet, there are addition ASCII versions that do not use accented letters. For example, Tortuga has both `tamaño_pantalla()` and `tamano_pantalla()` functions.
 
 
 
-The groundwork for translating turtle.py's docstrings has already been laid out. Note the `write_docstringdict()` function's docstring:
+## What the Tortuga Project is Not
 
-    def write_docstringdict(filename="turtle_docstringdict"):
-        """Create and write docstring-dictionary to file.
+Tortuga is not attempting to translate the Python keywords or the entirety of the Python standard library. Python keywords like `import`, `def`, or `while` will remain in English.
 
-        Optional argument:
-        filename -- a string, used as filename
-                    default value is turtle_docstringdict
+Currently, there are no plans to translate the docstrings for functions or the text of error messages. We can add these if there's a demand for them.
 
-        Has to be called explicitly, (not used by the turtle-graphics classes)
-        The docstring dictionary will be written to the Python script <filname>.py
-        It is intended to serve as a template for translation of the docstrings
-        into different languages.
-        """
+This multi-lingual approach is not a best practice for software design in general, but the specific usage of the `turtle` module as an educational tool for a global audience of non-professional programmers removes a critical barrier to learning to code.
 
-Note that the `'language'` key in the `_CFG` dictionary and the `_LANGUAGE` variable refer to the language for docstrings, not function or method names. These predate the Tortuga project.
 
-TODO - change help() text
 
-# Additional Work
+## Documentation and Reference
 
-It'd be great to add this to the http://pythonturtle.org website, which provides stand-alone installers for using turtle.py. This project hasn't been maintained in a while and I'm not sure about its current popularity, but it could make use of the internationalization work of Tortuga.
+TODO: This is currently under construction and Tortuga isn't ready for public use. I'm also writing the [Simple Turtle Tutorial](https://github.com/asweigart/simple-turtle-tutorial-for-python/) which is written in a similar style to the [Simple English Wikipedia](https://en.wikipedia.org/wiki/Simple_English_Wikipedia) to facilitate translation into multiple languages. This tutorial's code examples will use Tortuga.
 
-It's GitHub page is https://github.com/cool-RR/PythonTurtle
 
-# Special Thanks To
+
+## Special Thanks To
 
 Gregor Lingl for his work on the original turtle.py module.
 
@@ -127,7 +65,6 @@ Brian Ward and Catherine Devlin for the German translation
 Onur Ozay and Erman Korkut for the Turkish translation
 
 
-Support
--------
+## Support
 
 If you find this project helpful and would like to support its development, [consider donating to its creator on Patreon](https://www.patreon.com/AlSweigart).
