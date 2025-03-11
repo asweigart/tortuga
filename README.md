@@ -37,6 +37,7 @@ There is no language selection setting in Tortuga. All languages exist in the To
 
 For languages that use the Roman alphabet, there are addition ASCII versions that do not use accented letters. For example, Tortuga has both `tamaño_pantalla()` and `tamano_pantalla()` functions.
 
+Tortuga is designed as a single-file Python script. If your computers are unable to install Python packages from PyPI via `pip`, you can always copy the [*__init__.py* file from the GitHub repo](https://github.com/asweigart/tortuga/blob/master/src/tortuga/__init__.py) and rename it as *tortuga.py*.
 
 
 ## What the Tortuga Project is Not
@@ -53,6 +54,7 @@ This multi-lingual approach is not a best practice for software design in genera
 
 TODO: This is currently under construction and Tortuga isn't ready for public use. I'm also writing the [Simple Turtle Tutorial](https://github.com/asweigart/simple-turtle-tutorial-for-python/) which is written in a similar style to the [Simple English Wikipedia](https://en.wikipedia.org/wiki/Simple_English_Wikipedia) to facilitate translation into multiple languages. This tutorial's code examples will use Tortuga.
 
+For now, you can examine the `_TRANSLATION_SPREADSHEET` string in the source code to find the names of functions and arguments in all supported languages.
 
 
 ## Special Thanks To
