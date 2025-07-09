@@ -282,6 +282,14 @@ compound    compuesto   compuesto   composé compose Verbund Verbund
 center  centro  centro  centre  centre  Zentrum Zentrum
 nopic   nada    nada    rien    rien    Nichts  Nichts'''.splitlines()
 
+_TRANSLATION_SPEEDS = {
+  'fastest':0, 'fast':10, 'normal':6, 'slow':3, 'slowest':1,  # Original English
+'más_rápida': 0, 'rápida': 10, 'normal': 6, 'lenta': 3, 'más_lenta': 1,  # Spanish
+'mas_rapida': 0, 'rapida': 10, 'normal': 6, 'lenta': 3, 'mas_lenta': 1,  # Spanish ASCII
+'la_plus_rapide': 0, 'rapide': 10, 'normale': 6, 'lente': 3, 'la_plus_lente': 1,  # French and French ASCII
+'schnellste': 0, 'schnelle': 10, 'normale': 6, 'langsame': 3, 'langsamste': 1,  # German and German ASCII
+}
+
 def _create_translation_dictionaries():
     global ES, ES_ASCII, FR, FR_ASCII, DE, DE_ASCII
 
@@ -2435,7 +2443,8 @@ class TPen(object):
         Example (for a Turtle instance named turtle):
         >>> turtle.speed(3)
         """
-        speeds = {'fastest':0, 'fast':10, 'normal':6, 'slow':3, 'slowest':1 }
+        #speeds = {'fastest':0, 'fast':10, 'normal':6, 'slow':3, 'slowest':1 }
+        speeds = _TRANSLATION_SPEEDS
         if speed is None:
             return self._speed
         if speed in speeds:
