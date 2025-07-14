@@ -1,28 +1,21 @@
-'''
+# This script generates the reference documentation tables for README.md
 
-Huh. This person says that, for French, I can cut out the "de" and "l'" and even accent marks. https://bsky.app/profile/did:plc:vuqnaifkj5ucl6vrrnhwz5e4/post/3lgz7yqzdr22w
+import pyperclip
 
-
-'''
-
-
-#_ENGLISH_IDENTIFIERS = ['bgcolor', 'bgpic', 'bye', 'clearscreen', 'colormode', 'delay', 'exitonclick', 'getcanvas', 'getshapes', 'listen', 'mainloop', 'mode', 'no_animation', 'numinput', 'onkey', 'onkeypress', 'onkeyrelease', 'onscreenclick', 'ontimer', 'register_shape', 'resetscreen', 'save', 'screensize', 'setup', 'setworldcoordinates', 'textinput', 'title', 'tracer', 'turtles', 'update', 'window_height', 'window_width', 'back', 'begin_fill', 'begin_poly', 'circle', 'clear', 'clearstamp', 'clearstamps', 'clone', 'color', 'degrees', 'distance', 'dot', 'end_fill', 'end_poly', 'fillcolor', 'filling', 'forward', 'get_poly', 'getpen', 'getscreen', 'get_shapepoly', 'getturtle', 'goto', 'heading', 'hideturtle', 'home', 'isdown', 'isvisible', 'left', 'onclick', 'ondrag', 'onrelease', 'pen', 'pencolor', 'pendown', 'pensize', 'penup', 'position', 'radians', 'right', 'reset', 'resizemode', 'setheading', 'setundobuffer', 'setx', 'sety', 'shape', 'shapesize', 'shapetransform', 'shearfactor', 'showturtle', 'speed', 'stamp', 'teleport', 'tilt', 'tiltangle', 'towards', 'undo', 'undobufferentries', 'write', 'xcor', 'ycor', 'picname', 'cmode', 'xdummy', 'ydummy', 'prompt', 'default', 'minval', 'maxval', 'filename', 'overwrite', 'fun', 'key', 'btn', 'add', 'canvwidth', 'canvheight', 'bg', 'width', 'height', 'startx', 'starty', 'llx', 'lly', 'urx', 'ury', 'titlestring', 'radius', 'extent', 'steps', 'stampid', 'fullcircle', 'size', 'pendict', 'angle', 'rmode', 'to_angle', 'name', 'stretch_wid', 'stretch_len', 'outline', 'shear', 'fill_gap', 'move', 'align', 'font', 'black', 'blue', 'brown', 'orange', 'gray', 'grey', 'green', 'purple', 'violet', 'pink', 'yellow', 'white', 'red', 'magenta', 'cyan', 'arrow', 'blank', 'classic', 'square', 'triangle', 'turtle', 'polygon', 'image', 'compound', 'center', 'nopic']
-
-# This string value is copy/pasted from a spreadsheet for ease of updating:
-_NUM_LANGUAGES = 7  # Update this as new languages are added to the spreadsheet.
-_TRANSLATION_SPREADSHEET = '''\
+FUNCS = """\
 bgcolor color_fondo color_fondo couleur_fond    couleur_fond    Hintergrundfarbe    Hintergrundfarbe
 bgpic   imagen_fondo    imagen_fondo    image_fond  image_fond  Hintergrundbild Hintergrundbild
 bye adiós   adios   au_revoir   au_revoir   Tschüss Tschuess
 clearscreen borrar_pantalla borrar_pantalla effacer_écran   effacer_ecran   Bildschirm_löschen  Bildschirm_loeschen
 colormode   modo_color  modo_color  mode_couleur    mode_couleur    Farbmodus   Farbmodus
 delay   retraso retraso délai   delai   Verzögerung Verzoegerung
+done    hecho   hecho   faite   faite   fertiggestellt  fertiggestellt
 exitonclick salir_al_hacer_clic salir_al_hacer_clic quitter_au_clic quitter_au_clic Beenden_bei_Klick   Beenden_bei_Klick
 getcanvas   obtener_lienzo  obtener_lienzo  obtenir_toile   obtenir_toile   Leinwand_abrufen    Leinwand_abrufen
 getshapes   obtener_formas  obtener_formas  obtenir_formes  obtenir_formes  Formen_abrufen  Formen_abrufen
 listen  enfocar_ventana enfocar_ventana fenêtre_focus   fenetre_focus   Fenster_fokussieren Fenster_fokussieren
 mainloop    bucle_principal bucle_principal boucle_principale   boucle_principale   Hauptschleife   Hauptschleife
-mode    modo    modo    mode    mode    Modus   Modus
+mode    modo    modo    mode_tortue mode_tortue Modus   Modus
 no_animation    sin_animación   sin_animacion   pas_animation   pas_animation   keine_Animation keine_Animation
 numinput    ingresar_número ingresar_numero entrer_un_nombre    entrer_un_nombre    Zahl_eingeben   Zahl_eingeben
 onkey   al_presionar_tecla  al_presionar_tecla  sur_touche  sur_touche  Bei_Taste   Bei_Taste
@@ -44,16 +37,16 @@ update  actualizar  actualizar  mettre_à_jour   mettre_a_jour   Aktualisieren  
 window_height   altura_la_ventana   altura_la_ventana   hauteur_fenêtre hauteur_fenetre Fensterhöhe Fensterhoehe
 window_width    ancho_la_ventana    ancho_la_ventana    largeur_fenêtre largeur_fenetre Fensterbreite   Fensterbreite
 back    atrás   atras   reculer reculer Rückwärts   Rueckwaerts
-begin_fill  comenzar_a_rellenar comenzar_a_rellenar commencer_remplissage   commencer_remplissage   Füllen_beginnen Fuellen_beginnen
+begin_fill  comenzar_rellenar   comenzar_rellenar   commencer_remplissage   commencer_remplissage   Füllen_beginnen Fuellen_beginnen
 begin_poly  comenzar_polígono   comenzar_poligono   commencer_polygone  commencer_polygone  Polygon_beginnen    Polygon_beginnen
 circle  círculo circulo cercle  cercle  Kreis   Kreis
 clear   borrar  borrar  effacer effacer Löschen Loeschen
 clearstamp  borrar_sello    borrar_sello    effacer_tampon  effacer_tampon  Stempel_löschen Stempel_loeschen
 clearstamps borrar_todos_sellos borrar_todos_sellos effacer_tous_tampons    effacer_tous_tampons    Alle_Stempel_löschen    Alle_Stempel_loeschen
 clone   clonar  clonar  cloner  cloner  Klonen  Klonen
-color   color   color   couleur couleur Farbe   Farbe
+color   configuración_color configuracion_color couleur couleur Farbe   Farbe
 degrees grados  grados  degrés  degres  Grad    Grad
-distance    distancia   distancia   distance    distance    Distanz Distanz
+distance    distancia   distancia   distance_à  distance_a  Distanz Distanz
 dot punto   punto   point   point   Punkt   Punkt
 end_fill    terminar_relleno    terminar_relleno    terminer_remplissage    terminer_remplissage    Füllen_beenden  Fuellen_beenden
 end_poly    terminar_polígono   terminar_poligono   terminer_polygone   terminer_polygone   Polygon_beenden Polygon_beenden
@@ -75,13 +68,13 @@ left    izquierda   izquierda   gauche  gauche  Links   Links
 onclick al_hacer_clic   al_hacer_clic   au_clic au_clic Bei_Klick   Bei_Klick
 ondrag  al_arrastrar    al_arrastrar    au_glisser  au_glisser  Beim_Ziehen Beim_Ziehen
 onrelease   al_soltar   al_soltar   au_relâchement  au_relachement  Bei_Freigabe    Bei_Freigabe
-pen pluma   pluma   stylo   stylo   Stift   Stift
-pencolor    configuración_pluma configuracion_pluma paramètres_stylo    parametres_stylo    Stifteinstellung    Stifteinstellung
+pen configuración_pluma configuracion_pluma paramètres_stylo    parametres_stylo    Stifteinstellung    Stifteinstellung
+pencolor    color_pluma color_pluma couleur_du_stylo    couleur_du_stylo    Stiftfarbe  Stiftfarbe
 pendown pluma_abajo pluma_abajo stylo_en_bas    stylo_en_bas    Stift_nach_unten    Stift_nach_unten
 pensize tamaño_pluma    tamano_pluma    taille_stylo    taille_stylo    Stiftdicke  Stiftdicke
 penup   pluma_arriba    pluma_arriba    stylo_en_haut   stylo_en_haut   Stift_nach_oben Stift_nach_oben
-position    posición    posicion    position    position    Position    Position
-radians radianes    radianes    radians radians Bogenmaß    Bogenmass
+position    posición    posicion    coordonnées coordonnees Position    Position
+radians radianes    radianes    mode_radians    mode_radians    Bogenmaß    Bogenmass
 right   derecha derecha droite  droite  Rechts  Rechts
 reset   reiniciar_pantalla  reiniciar_pantalla  réinitialiser_écran reinitialiser_ecran Bildschirm_zurücksetzen Bildschirm_zuruecksetzen
 resizemode  modo_cambio_tamaño  modo_cambio_tamano  mode_redimensionnement  mode_redimensionnement  Größenmodus Groessenmodus
@@ -104,8 +97,10 @@ undo    deshacer    deshacer    annuler annuler Rückgängig  Rueckgaengig
 undobufferentries   entradas_búfer_deshacer entradas_bufer_deshacer entrées_tampon_annulation   entrees_tampon_annulation   Rückgangepuffer_Einträge    Rueckgangepuffer_Eintraege
 write   escribir    escribir    écrire  ecrire  Schreiben   Schreiben
 xcor    posición_x  posicion_x  position_x  position_x  X_Position  X_Position
-ycor    posición_y  posicion_y  position_y  position_y  Y_Position  Y_Position
-picname imagen  imagen  image   image   Bild    Bild
+ycor    posición_y  posicion_y  position_y  position_y  Y_Position  Y_Position""".splitlines()
+
+PARAMS = """\
+picname nombre_del_archivo  nombre_del_archivo  nom_de_fichier  nom_de_fichier  Dateiname   Dateiname
 cmode   modo_color  modo_color  mode_couleur    mode_couleur    Farbmodus   Farbmodus
 xdummy  ignorar_x   ignorar_x   ignorer_x   ignorer_x   X_ignorieren    X_ignorieren
 ydummy  ignorar_y   ignorar_y   ignorer_y   ignorer_y   Y_ignorieren    Y_ignorieren
@@ -132,12 +127,12 @@ urx x_superior_derecha  x_superior_derecha  haut_droit_x    haut_droit_x    Oben
 ury y_superior_derecha  y_superior_derecha  haut_droit_y    haut_droit_y    Oben_rechts_Y   Oben_rechts_Y
 titlestring título  titulo  titre   titre   Titel   Titel
 radius  radio   radio   rayon   rayon   Radius  Radius
-extent  extensión   extension   étendue etendue Bogenmaß    Bogenmass
+extent  tamaño_arco tamano_arco taille_arc  taille_arc  Bogenmaß    Bogenmass
 steps   pasos   pasos   étapes  etapes  Schritte    Schritte
 stampid ID_sello    ID_sello    ID_tampon   ID_tampon   Stempel_ID  Stempel_ID
 fullcircle  círculo_completo    circulo_completo    cercle_complet  cercle_complet  Vollkreis   Vollkreis
 size    tamaño  tamano  taille  taille  Größe   Groesse
-pendict configuraciones_pluma   configuraciones_pluma   paramètres_stylo    parametres_stylo    Stifteinstellungen  Stifteinstellungen
+pendict parámetros_bolígrafo    parametros_bolígrafo    paramètres_du_stylo parametres_du_stylo Stiftparameter  Stiftparameter
 angle   ángulo  angulo  angle   angle   Winkel  Winkel
 rmode   modo_cambio_tamaño  modo_cambio_tamano  mode_redimensionnement  mode_redimensionnement  Größenmodus Groessenmodus
 to_angle    ángulo  angulo  angle   angle   Winkel  Winkel
@@ -149,7 +144,9 @@ shear   cizalladura cizalladura cisaillement    cisaillement    Schub   Schub
 fill_gap    hueco_relleno   hueco_relleno   écart_remplissage   ecart_remplissage   Fülllücke   Fuellluecke
 move    mover   mover   déplacer    deplacer    Bewegen Bewegen
 align   alinear alinear aligner aligner Ausrichten  Ausrichten
-font    fuente  fuente  police  police  Schriftart  Schriftart
+font    fuente  fuente  fonte   fonte   Schriftart  Schriftart""".splitlines()
+
+ARGS = """\
 black   negro   negro   noir    noir    Schwarz Schwarz
 blue    azul    azul    bleu    bleu    Blau    Blau
 brown   marrón  marron  brun    brun    Braun   Braun
@@ -175,64 +172,46 @@ polygon polígono    poligono    polygone    polygone    Polygon Polygon
 image   imagen  imagen  image   image   Bild    Bild
 compound    compuesto   compuesto   composé compose Verbund Verbund
 center  centro  centro  centre  centre  Zentrum Zentrum
-nopic   nada    nada    rien    rien    Nichts  Nichts'''.splitlines()
+nopic   nada    nada    rien    rien    Nichts  Nichts
+fastest más_rápida  mas_rapida  plus_rapide plus_rapide schnellste  schnellste
+fast    rápida  rapida  rapide  rapide  schnelle    schnelle
+normal  normal  normal  normale normale normale normale
+slow    lenta   lenta   lente   lente   langsame    langsame
+slowest más_lenta   mas_lenta   plus_lente  plus_lente  langsamste  langsamste
+shown   visible visible visible visible sichtbar    sichtbar
+standard    normal  normal  normale normale Normal  Normal
+logo    logo    logo    logo    logo    logo    logo
+world   mundo   mundo   monde   monde   Welt    Welt
+bold    negrita negrita gras    gras    fett    fett
+italic  cursiva cursiva italique    italique    kursive kursive
+underline   subrayada   subrayada   soulignement    soulignement    unterstreichung unterstreichung""".splitlines()
 
+es_lines = ['### Español/Spanish', '', '| English | Spanish | Spanish ASCII |', '| --- | --- | --- |']
+fr_lines = ['### Français/French', '', '| English | French | French ASCII |', '| --- | --- | --- |']
+de_lines = ['### Deutsch/German', '', '| English | German | German ASCII |', '| --- | --- | --- |']
 
-def _create_translation_dictionaries():
-    global ES, ES_ASCII, FR, FR_ASCII, DE, DE_ASCII
+for row in FUNCS:
+    row = row.split()
+    es_lines.append(f"| `{row[0]}()` | `{row[1]}()` | `{row[2]}()` |")
+    fr_lines.append(f"| `{row[0]}()` | `{row[3]}()` | `{row[4]}()` |")
+    de_lines.append(f"| `{row[0]}()` | `{row[5]}()` | `{row[6]}()` |")
 
-    ES = {}
-    ES_ASCII = {}
-    FR = {}
-    FR_ASCII = {}
-    DE = {}
-    DE_ASCII = {}
+for row in PARAMS:
+    row = row.split()
+    es_lines.append(f"| `{row[0]}` | `{row[1]}` | `{row[2]}` |")
+    fr_lines.append(f"| `{row[0]}` | `{row[3]}` | `{row[4]}` |")
+    de_lines.append(f"| `{row[0]}` | `{row[5]}` | `{row[6]}` |")
 
-    for i, row in enumerate(_TRANSLATION_SPREADSHEET):
-        assert '-' not in row, 'Dash character found in spreadsheet row: ' + row
-        assert "'" not in row, 'Quote character found in spreadsheet row: ' + row
+for row in ARGS:
+    row = row.split()
+    es_lines.append(f"| `'{row[0]}'` | `'{row[1]}'` | `'{row[2]}'` |")
+    fr_lines.append(f"| `'{row[0]}'` | `'{row[3]}'` | `'{row[4]}'` |")
+    de_lines.append(f"| `'{row[0]}'` | `'{row[5]}'` | `'{row[6]}'` |")
 
-        spreadsheet_columns = row.split()
+text  = '\n'.join(es_lines) + \
+        '\n\n' + \
+        '\n'.join(fr_lines) + \
+        '\n\n' + \
+        '\n'.join(de_lines)
 
-        assert len(spreadsheet_columns) == _NUM_LANGUAGES, 'Extra space found in spreadsheet row: ' + row
-
-        english_identifier = spreadsheet_columns[0]
-
-        ES[english_identifier] = spreadsheet_columns[1]
-        ES_ASCII[english_identifier] = spreadsheet_columns[2]
-        FR[english_identifier] = spreadsheet_columns[3]
-        FR_ASCII[english_identifier] = spreadsheet_columns[4]
-        DE[english_identifier] = spreadsheet_columns[5]
-        DE_ASCII[english_identifier] = spreadsheet_columns[6]
-
-
-_create_translation_dictionaries()
-_ES_INVERSE = {v: k for k, v in ES.items()}
-_ES_ASCII_INVERSE = {v: k for k, v in ES_ASCII.items()}
-_FR_INVERSE = {v: k for k, v in FR.items()}
-_FR_ASCII_INVERSE = {v: k for k, v in FR_ASCII.items()}
-_DE_INVERSE = {v: k for k, v in DE.items()}
-_DE_ASCII_INVERSE = {v: k for k, v in DE_ASCII.items()}
-
-
-print(f'''
-ES = {ES}
-_ES_INVERSE = {{v: k for k, v in ES.items()}}
-
-ES_ASCII = {ES_ASCII}
-_ES_ASCII_INVERSE = {{v: k for k, v in ES_ASCII.items()}}
-
-FR = {FR}
-_FR_INVERSE = {{v: k for k, v in FR.items()}}
-
-FR_ASCII = {FR_ASCII}
-_FR_ASCII_INVERSE = {{v: k for k, v in FR_ASCII.items()}}
-
-DE = {DE}
-_DE_INVERSE = {{v: k for k, v in DE.items()}}
-
-DE_ASCII = {DE_ASCII}
-_DE_ASCII_INVERSE = {{v: k for k, v in DE_ASCII.items()}}
-''')
-
-
+pyperclip.copy(text)
