@@ -33,7 +33,7 @@ textinput   ingresar_texto  ingresar_texto  entrer_texte    entrer_texte    Text
 title   título  titulo  titre   titre   Titel   Titel
 tracer  tasa_dibujo tasa_dibujo taux_dessin taux_dessin Zeichengeschwindigkeit  Zeichengeschwindigkeit
 turtles tortugas    tortugas    tortues tortues Schildkröten    Schildkroeten
-update  actualizar  actualizar  mettre_à_jour   mettre_a_jour   Aktualisieren   Aktualisieren
+update  actualizar  actualizar  mettre_jour mettre_jour Aktualisieren   Aktualisieren
 window_height   altura_la_ventana   altura_la_ventana   hauteur_fenêtre hauteur_fenetre Fensterhöhe Fensterhoehe
 window_width    ancho_la_ventana    ancho_la_ventana    largeur_fenêtre largeur_fenetre Fensterbreite   Fensterbreite
 back    atrás   atras   reculer reculer Rückwärts   Rueckwaerts
@@ -69,10 +69,10 @@ onclick al_hacer_clic   al_hacer_clic   au_clic au_clic Bei_Klick   Bei_Klick
 ondrag  al_arrastrar    al_arrastrar    au_glisser  au_glisser  Beim_Ziehen Beim_Ziehen
 onrelease   al_soltar   al_soltar   au_relâchement  au_relachement  Bei_Freigabe    Bei_Freigabe
 pen configuración_pluma configuracion_pluma paramètres_stylo    parametres_stylo    Stifteinstellung    Stifteinstellung
-pencolor    color_pluma color_pluma couleur_du_stylo    couleur_du_stylo    Stiftfarbe  Stiftfarbe
-pendown pluma_abajo pluma_abajo stylo_en_bas    stylo_en_bas    Stift_nach_unten    Stift_nach_unten
+pencolor    color_pluma color_pluma couleur_stylo   couleur_stylo   Stiftfarbe  Stiftfarbe
+pendown pluma_abajo pluma_abajo stylo_bas   stylo_bas   Stift_nach_unten    Stift_nach_unten
 pensize tamaño_pluma    tamano_pluma    taille_stylo    taille_stylo    Stiftdicke  Stiftdicke
-penup   pluma_arriba    pluma_arriba    stylo_en_haut   stylo_en_haut   Stift_nach_oben Stift_nach_oben
+penup   pluma_arriba    pluma_arriba    stylo_haut  stylo_haut  Stift_nach_oben Stift_nach_oben
 position    posición    posicion    coordonnées coordonnees Position    Position
 radians radianes    radianes    mode_radians    mode_radians    Bogenmaß    Bogenmass
 right   derecha derecha droite  droite  Rechts  Rechts

@@ -271,7 +271,7 @@ The following table contains the equivalent functions and arguments for Tortuga.
 | `title()` | `titre()` | `titre()` |
 | `tracer()` | `taux_dessin()` | `taux_dessin()` |
 | `turtles()` | `tortues()` | `tortues()` |
-| `update()` | `mettre_à_jour()` | `mettre_a_jour()` |
+| `update()` | `mettre_jour()` | `mettre_jour()` |
 | `window_height()` | `hauteur_fenêtre()` | `hauteur_fenetre()` |
 | `window_width()` | `largeur_fenêtre()` | `largeur_fenetre()` |
 | `back()` | `reculer()` | `reculer()` |
@@ -307,10 +307,10 @@ The following table contains the equivalent functions and arguments for Tortuga.
 | `ondrag()` | `au_glisser()` | `au_glisser()` |
 | `onrelease()` | `au_relâchement()` | `au_relachement()` |
 | `pen()` | `paramètres_stylo()` | `parametres_stylo()` |
-| `pencolor()` | `couleur_du_stylo()` | `couleur_du_stylo()` |
-| `pendown()` | `stylo_en_bas()` | `stylo_en_bas()` |
+| `pencolor()` | `couleur_stylo()` | `couleur_stylo()` |
+| `pendown()` | `stylo_bas()` | `stylo_bas()` |
 | `pensize()` | `taille_stylo()` | `taille_stylo()` |
-| `penup()` | `stylo_en_haut()` | `stylo_en_haut()` |
+| `penup()` | `stylo_haut()` | `stylo_haut()` |
 | `position()` | `coordonnées()` | `coordonnees()` |
 | `radians()` | `mode_radians()` | `mode_radians()` |
 | `right()` | `droite()` | `droite()` |
