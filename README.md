@@ -22,7 +22,7 @@ Only the non-English names have been added. The functionality has not changed. T
     >>> from tortuga import *
     >>> adelante(100)
     >>> izquierda(90)
-    >>> color_de_lapiz('rojo')
+    >>> color_pluma('rojo')
     >>> atras(50)
 
 ...produces the same output as this:
